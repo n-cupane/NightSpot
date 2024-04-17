@@ -5,5 +5,5 @@ import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE,componentModel = "spring",uses = UserServiceJPA.class)
-public interface UserMapper {
+public interface ProductMapper {
 }

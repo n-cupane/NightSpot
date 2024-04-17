@@ -1,9 +1,9 @@
 package com.nighter.nightspot.dto.review;
 
 import com.nighter.nightspot.dto.spot.SpotWithCategoryDTO;
+import com.nighter.nightspot.dto.spot.SpotWithoutCategoryDTO;
 import com.nighter.nightspot.models.Spot;
 import com.nighter.nightspot.models.User;
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -11,8 +11,10 @@ import lombok.Data;
 import java.time.LocalDate;
 
 @Data
-public class InsertReviewDTO {
+public class UpdateReviewDTO {
 
+    @NotNull(message = "Id cannot be null")
+    private Long id;
     @NotNull(message = "User cannot be null")
     private User user;
     @NotNull(message = "Spot cannot be null")

@@ -11,8 +11,11 @@ import lombok.Data;
 import java.time.LocalDate;
 
 @Data
-public class InsertReviewDTO {
+public class ReviewDTO {
 
+
+    @NotNull(message = "Id cannot be null")
+    private Long id;
     @NotNull(message = "User cannot be null")
     private User user;
     @NotNull(message = "Spot cannot be null")
