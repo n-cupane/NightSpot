@@ -15,7 +15,7 @@ import java.io.Serializable;
 public class Spot_ProductKey implements Serializable {
 
     @Column(name = "spot_id")
-    private Long userId;
-    @Column(name = "product_id")
     private Long spotId;
+    @Column(name = "product_id")
+    private Long productId;
 }
