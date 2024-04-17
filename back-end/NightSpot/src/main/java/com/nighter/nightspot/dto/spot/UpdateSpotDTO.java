@@ -29,6 +29,7 @@ public class UpdateSpotDTO {
     @NotNull(message = "Category cannot be null")
     private CategoryWithoutSpotsDTO category;
 
+    @NotNull(message = "Photos cannot be null")
     private List<Photo> photos;
 
 }

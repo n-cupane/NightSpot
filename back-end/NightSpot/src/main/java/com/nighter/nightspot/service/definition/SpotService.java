@@ -4,6 +4,7 @@ import com.nighter.nightspot.dto.category.CategoryWithSpotsDTO;
 import com.nighter.nightspot.dto.category.CategoryWithoutSpotsDTO;
 import com.nighter.nightspot.dto.category.InsertCategoryDTO;
 import com.nighter.nightspot.dto.category.UpdateCategoryDTO;
+import com.nighter.nightspot.dto.spot.InsertSpotDTO;
 import com.nighter.nightspot.dto.spot.SpotWithCategoryDTO;
 import com.nighter.nightspot.dto.spot.SpotWithoutCategoryDTO;
 import com.nighter.nightspot.dto.spot.UpdateSpotDTO;
@@ -22,7 +23,7 @@ public interface SpotService {
     List<SpotWithoutCategoryDTO> findAlWithoutCategory() throws NoResultException;
     void update(UpdateSpotDTO updateSpotDTO) throws Exception;
 
-    void insert(InsertCategoryDTO insertCategoryDTO) throws Exception;
+    void insert(InsertSpotDTO insertSpotDTO) throws Exception;
 
     void deleteById(Long aLong) throws Exception;
 
