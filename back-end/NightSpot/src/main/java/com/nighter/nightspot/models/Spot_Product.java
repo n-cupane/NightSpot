@@ -27,7 +27,7 @@ public class Spot_Product {
     private Product product;
 
     @Column(nullable = false)
-    private Integer price;
+    private Double price;
 
 
 }
