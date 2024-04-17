@@ -13,9 +13,9 @@ public interface ReviewService {
 
     List<ReviewDTO> findAll() throws NoResultException;
 
-    void update(UpdateReviewDTO updateActorDTO) throws Exception;
+    void update(UpdateReviewDTO updateReviewDTO) throws Exception;
 
-    void insert(InsertReviewDTO insertActorDTO) throws Exception;
+    void insert(InsertReviewDTO insertReviewDTO) throws Exception;
 
     void deleteById(Long aLong) throws Exception;
 

@@ -17,9 +17,9 @@ public interface CategoryService {
     List<CategoryWithSpotsDTO> findAllWithSpots() throws NoResultException;
 
     List<CategoryWithoutSpotsDTO> findAllWithoutSpots() throws NoResultException;
-    void update(UpdateCategoryDTO updateActorDTO) throws Exception;
+    void update(UpdateCategoryDTO updateCategoryDTO) throws Exception;
 
-    void insert(InsertCategoryDTO insertActorDTO) throws Exception;
+    void insert(InsertCategoryDTO insertCategoryDTO) throws Exception;
 
     void deleteById(Long aLong) throws Exception;
 
