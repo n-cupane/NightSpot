@@ -2,6 +2,7 @@ package com.nighter.nightspot.dto.visit;
 
 import com.nighter.nightspot.models.Spot;
 import com.nighter.nightspot.models.User;
+import com.nighter.nightspot.models.VisitKey;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import lombok.Getter;
@@ -12,10 +13,9 @@ import java.time.LocalTime;
 
 @Getter
 @Setter
-public class InsertVisitDTO {
-
-    @NotNull(message = "user cannot be null")
-    private User user;
+public class VisitWithoutUser {
+    @NotNull(message = "id cannot be null")
+    private VisitKey id;
     @NotNull(message = "spot cannot be null")
     private Spot spot;
     @PastOrPresent

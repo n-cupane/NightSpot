@@ -11,8 +11,10 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-public class InsertUserDTO {
+public class UpdateUserDTO {
 
+    @NotNull(message = "id cannot be null")
+    private Long id;
     @NotBlank(message = "first name must be present")
     private String firstName;
     @NotBlank(message = "last name must be present")

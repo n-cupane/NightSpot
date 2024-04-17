@@ -32,7 +32,13 @@ public class ErrorHandler {
         errorMessage.setStatusCode(HttpStatus.BAD_REQUEST.value());
         errorMessage.setStatusString(HttpStatus.BAD_REQUEST.name());
         errorMessage.setTargetUrl(request.getDescription(false));
-        errorMessage.setFieldErrors(e.getFieldErrors().stream().collect(Collectors.toMap(FieldError::getField,FieldError::getDefaultMessage)));
+        errorMessage.setFieldErrors(
+                e.getFieldErrors()
+                        .stream()
+                        .collect(
+                                Collectors.toMap(FieldError::getField,FieldError::getDefaultMessage)
+                        )
+        );
         return ResponseEntity.badRequest().body(errorMessage);
     }
 

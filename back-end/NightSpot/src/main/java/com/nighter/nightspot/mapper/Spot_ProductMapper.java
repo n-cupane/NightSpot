@@ -12,7 +12,7 @@ import com.nighter.nightspot.service.implementation.UserServiceJPA;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE,componentModel = "spring",uses = UserServiceJPA.class)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE,componentModel = "spring")
 public interface Spot_ProductMapper {
 
     public Spot_Product fromSpotProductDTO(SpotProductDTO spotProductDTO);

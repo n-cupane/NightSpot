@@ -1,9 +1,12 @@
 package com.nighter.nightspot.dto.spot;
 
 import com.nighter.nightspot.dto.category.CategoryWithoutSpotsDTO;
+import com.nighter.nightspot.models.Photo;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class UpdateSpotDTO {
@@ -25,5 +28,7 @@ public class UpdateSpotDTO {
 
     @NotNull(message = "Category cannot be null")
     private CategoryWithoutSpotsDTO category;
+
+    private List<Photo> photos;
 
 }

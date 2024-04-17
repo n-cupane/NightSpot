@@ -6,7 +6,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class InsertProductDTO {
+public class UpdateProductDTO {
+
+    @NotNull(message = "id cannot be null")
+    private Long id;
 
     @NotNull(message = "name cannot be null")
     private String name;
