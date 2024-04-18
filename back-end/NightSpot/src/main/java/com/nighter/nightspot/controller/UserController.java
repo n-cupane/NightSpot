@@ -20,6 +20,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
     @PostMapping("/insert")
     public ResponseEntity<Void> insertUser(@Valid @RequestBody InsertUserDTO user) {
         try {
