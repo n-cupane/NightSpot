@@ -21,6 +21,6 @@ public interface CategoryService {
 
     void insert(InsertCategoryDTO insertCategoryDTO) throws Exception;
 
-    void deleteById(Long aLong) throws Exception;
+    void deleteById(Long aLong) throws NoResultException;
 
 }

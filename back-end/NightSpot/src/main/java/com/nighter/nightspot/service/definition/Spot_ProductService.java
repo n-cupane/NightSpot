@@ -19,6 +19,6 @@ public interface Spot_ProductService {
 
     void insert(InsertSpotProductDTO insertSpotProductDTO) throws Exception;
 
-    void deleteById(Long aLong) throws Exception;
+    void deleteById(Long aLong) throws NoResultException;
 
 }

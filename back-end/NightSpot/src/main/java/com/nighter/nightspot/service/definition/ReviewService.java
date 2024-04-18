@@ -17,6 +17,6 @@ public interface ReviewService {
 
     void insert(InsertReviewDTO insertReviewDTO) throws Exception;
 
-    void deleteById(Long aLong) throws Exception;
+    void deleteById(Long aLong) throws NoResultException;
 
 }

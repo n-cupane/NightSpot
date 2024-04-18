@@ -25,6 +25,7 @@ public interface SpotService {
 
     void insert(InsertSpotDTO insertSpotDTO) throws Exception;
 
-    void deleteById(Long aLong) throws Exception;
+    void deleteById(Long aLong) throws NoResultException;
+
 
 }
