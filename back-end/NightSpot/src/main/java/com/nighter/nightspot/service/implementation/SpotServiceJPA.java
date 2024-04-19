@@ -56,7 +56,7 @@ public class SpotServiceJPA implements SpotService {
     }
 
     @Override
-    public void deleteById(Long aLong) throws Exception {
+    public void deleteById(Long aLong) throws NoResultException {
         repository.deleteById(aLong);
     }
 }

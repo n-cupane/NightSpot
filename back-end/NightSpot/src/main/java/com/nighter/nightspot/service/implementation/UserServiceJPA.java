@@ -5,6 +5,7 @@ import com.nighter.nightspot.dto.user.UpdateUserDTO;
 import com.nighter.nightspot.dto.user.UserDTO;
 import com.nighter.nightspot.error.exception.NoResultException;
 import com.nighter.nightspot.mapper.UserMapper;
+import com.nighter.nightspot.models.User;
 import com.nighter.nightspot.repository.UserRepositoryJPA;
 import com.nighter.nightspot.service.definition.UserService;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -49,6 +51,14 @@ public class UserServiceJPA implements UserService {
 
     @Override
     public void save(UpdateUserDTO user) {
+        Optional<User> u = repo.findById(user.getId());
+        User userGet = u.get();
+        if(user.getPhoto()==null) {
+            user.setPhoto(userGet.getPhoto());
+        }
+        if(user.getPhoto()==null) {
+            user.setInstagramHandle(userGet.getInstagramHandle());
+        }
         repo.save(
                 mapper.fromUpdateUserDTO(user)
         );

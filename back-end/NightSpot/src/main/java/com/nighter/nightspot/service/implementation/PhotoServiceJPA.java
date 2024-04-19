@@ -6,6 +6,7 @@ import com.nighter.nightspot.dto.photo.PhotoWithoutSpot;
 import com.nighter.nightspot.dto.photo.UpdatePhotoDTO;
 import com.nighter.nightspot.error.exception.NoResultException;
 import com.nighter.nightspot.mapper.PhotoMapper;
+import com.nighter.nightspot.models.Photo;
 import com.nighter.nightspot.repository.PhotoRepositoryJPA;
 import com.nighter.nightspot.service.definition.PhotoService;
 import lombok.RequiredArgsConstructor;
@@ -49,6 +50,10 @@ public class PhotoServiceJPA implements PhotoService {
 
     @Override
     public void save(UpdatePhotoDTO photo) {
+        Photo p = repo.getById(photo.getId());
+        if(photo.getPhoto()==null) {
+            photo.setPhoto(p.getPhoto());
+        }
         repo.save(
                 mapper.fromUpdatePhotoDTO(photo)
         );

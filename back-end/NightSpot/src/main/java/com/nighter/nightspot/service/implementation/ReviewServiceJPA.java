@@ -42,7 +42,7 @@ public class ReviewServiceJPA implements ReviewService {
     }
 
     @Override
-    public void deleteById(Long aLong) throws Exception {
+    public void deleteById(Long aLong) throws NoResultException {
         reviewRepositoryJPA.deleteById(aLong);
     }
 }

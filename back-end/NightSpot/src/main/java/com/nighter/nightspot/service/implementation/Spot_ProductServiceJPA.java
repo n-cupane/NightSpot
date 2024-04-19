@@ -44,7 +44,7 @@ public class Spot_ProductServiceJPA implements Spot_ProductService {
     }
 
     @Override
-    public void deleteById(Long aLong) throws Exception {
+    public void deleteById(Long aLong) throws NoResultException {
         spotProductRepositoryJPA.deleteById(aLong);
     }
 }
