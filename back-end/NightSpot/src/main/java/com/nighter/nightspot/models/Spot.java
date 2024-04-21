@@ -32,4 +32,7 @@ public class Spot {
     @ManyToMany(mappedBy = "spots")
     private List<User> users;
 
+    @OneToMany(mappedBy = "spot")
+    private List<Photo> photos;
+
 }

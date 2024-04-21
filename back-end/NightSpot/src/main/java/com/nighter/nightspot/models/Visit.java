@@ -13,7 +13,7 @@ import java.time.LocalTime;
 public class Visit {
 
     @EmbeddedId
-    private VisitKey id;
+    private VisitKey id = new VisitKey();
 
     @ManyToOne
     @MapsId("userId")

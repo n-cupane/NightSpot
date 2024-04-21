@@ -24,7 +24,7 @@ public class Review {
     @Column(nullable = false)
     private String text;
     @Column(nullable = false)
-    private int rating;
+    private Integer rating;
     @Column(nullable = false)
     private LocalDate date;
 }
