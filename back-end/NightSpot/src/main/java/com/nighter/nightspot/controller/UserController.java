@@ -4,7 +4,6 @@ import com.nighter.nightspot.dto.user.InsertUserDTO;
 import com.nighter.nightspot.dto.user.UpdateUserDTO;
 import com.nighter.nightspot.dto.user.UserDTO;
 import com.nighter.nightspot.error.exception.NoResultException;
-import com.nighter.nightspot.models.User;
 import com.nighter.nightspot.service.definition.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +13,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-
-    @PostMapping("/insert")
+//    @CrossOrigin(origins = "http://127.0.0.1:5500/")
+    @PostMapping("/all/user/insert")
     public ResponseEntity<Void> insertUser(@Valid @RequestBody InsertUserDTO user) {
         try {
             userService.save(user);
@@ -31,7 +29,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/update")
+    @PostMapping("/user/update")
     public ResponseEntity<Void> updateUser(@Valid @RequestBody UpdateUserDTO user) {
         try {
             userService.save(user);
@@ -41,33 +39,40 @@ public class UserController {
         }
     }
 
-    @GetMapping("/show/id/{id}")
+    @GetMapping("/user/show/id/{id}")
     public ResponseEntity<UserDTO> showUser(@PathVariable Long id) throws NoResultException {
         UserDTO user = userService.findById(id);
         return ResponseEntity.ok(user);
     }
 
-    @GetMapping("/show-all")
+    @GetMapping("/all/user/show-all")
     public ResponseEntity<List<UserDTO>> showAllUsers() {
         List<UserDTO> users = userService.findAll();
         return ResponseEntity.ok(users);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/admin/user/delete/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) throws NoResultException {
         userService.deleteById(id);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/show/email/{email}")
+    @GetMapping("/user/show/email/{email}")
     public ResponseEntity<UserDTO> showUserByEmail(@PathVariable String email) throws NoResultException {
         UserDTO user = userService.findByEmail(email);
         return ResponseEntity.ok(user);
     }
 
-    @GetMapping("/show/username/{username}")
+    @GetMapping("/user/show/username/{username}")
     public ResponseEntity<UserDTO> showUserByUsername(@PathVariable String username) throws NoResultException {
         UserDTO user = userService.findByUsername(username);
         return ResponseEntity.ok(user);
     }
+
+    @PostMapping("/all/user/login")
+    public ResponseEntity<UserDTO> login(@RequestBody UserDTO loggingUser) throws Exception {
+        UserDTO user = userService.login(loggingUser.getUsername(), loggingUser.getPassword());
+        return ResponseEntity.ok(user);
+    }
+
 }

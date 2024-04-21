@@ -23,4 +23,6 @@ public interface UserService {
 
     UserDTO findByUsername(String username) throws NoResultException;
 
+    UserDTO login(String username, String password) throws Exception;
+
 }
