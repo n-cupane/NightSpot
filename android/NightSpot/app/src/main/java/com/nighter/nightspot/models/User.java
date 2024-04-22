@@ -2,6 +2,7 @@ package com.nighter.nightspot.models;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.List;
 
 public class User {
 
@@ -15,10 +16,10 @@ public class User {
 //    private LocalDate dateOfBirth;
     private byte[] photo;
 
-//    private List<Ticket> tickets;
-//    private List<Visit> visits;
-//    private List<Review> reviews;
-//    private List<Spot> spots;
+   private List<Ticket> tickets;
+   private List<Visit> visits;
+   private List<Review> reviews;
+    private List<Spot> spots;
 
     public Long getId() {
         return id;
@@ -92,37 +93,37 @@ public class User {
         this.photo = photo;
     }
 
-//    public List<Ticket> getTickets() {
-//        return tickets;
-//    }
-//
-//    public void setTickets(List<Ticket> tickets) {
-//        this.tickets = tickets;
-//    }
-//
-//    public List<Visit> getVisits() {
-//        return visits;
-//    }
-//
-//    public void setVisits(List<Visit> visits) {
-//        this.visits = visits;
-//    }
-//
-//    public List<Review> getReviews() {
-//        return reviews;
-//    }
-//
-//    public void setReviews(List<Review> reviews) {
-//        this.reviews = reviews;
-//    }
-//
-//    public List<Spot> getSpots() {
-//        return spots;
-//    }
-//
-//    public void setSpots(List<Spot> spots) {
-//        this.spots = spots;
-//    }
+   public List<Ticket> getTickets() {
+       return tickets;
+   }
+
+  public void setTickets(List<Ticket> tickets) {
+       this.tickets = tickets;
+    }
+
+    public List<Visit> getVisits() {
+        return visits;
+    }
+
+    public void setVisits(List<Visit> visits) {
+        this.visits = visits;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+   public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    public List<Spot> getSpots() {
+        return spots;
+    }
+
+   public void setSpots(List<Spot> spots) {
+        this.spots = spots;
+    }
 
 
     @Override
