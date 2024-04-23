@@ -12,16 +12,15 @@ import java.time.LocalTime;
 @Setter
 public class Visit {
 
-    @EmbeddedId
-    private VisitKey id = new VisitKey();
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @ManyToOne
-    @MapsId("userId")
     @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
-    @MapsId("spotId")
     @JoinColumn(name = "spot_id")
     private Spot spot;
 

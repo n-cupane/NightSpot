@@ -40,9 +40,9 @@ public class VisitController {
         }
     }
 
-    @GetMapping("/auth/visit/show/id/{uId}/{sId}")
-    public ResponseEntity<VisitDTO> showVisit(@PathVariable Long uId, @PathVariable Long sId) throws NoResultException {
-        VisitDTO visit = visitService.findByIds(uId, sId);
+    @GetMapping("/auth/visit/show/id/{id}")
+    public ResponseEntity<VisitDTO> showVisit(@PathVariable Long id) throws NoResultException {
+        VisitDTO visit = visitService.findById(id);
         return ResponseEntity.ok(visit);
     }
 
@@ -52,9 +52,9 @@ public class VisitController {
         return ResponseEntity.ok(visits);
     }
 
-    @DeleteMapping("/auth/visit/delete/{uId}/{sId}")
-    public ResponseEntity<Void> delete(@PathVariable Long uId, @PathVariable Long sId) throws NoResultException {
-        visitService.deleteByIds(uId, sId);
+    @DeleteMapping("/auth/visit/delete/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) throws NoResultException {
+        visitService.deleteById(id);
         return ResponseEntity.ok().build();
     }
 

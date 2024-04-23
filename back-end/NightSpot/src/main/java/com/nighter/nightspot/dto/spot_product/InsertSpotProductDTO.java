@@ -3,7 +3,6 @@ package com.nighter.nightspot.dto.spot_product;
 import com.nighter.nightspot.dto.spot.SpotWithCategoryDTO;
 import com.nighter.nightspot.models.Product;
 import com.nighter.nightspot.models.Spot;
-import com.nighter.nightspot.models.Spot_ProductKey;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;

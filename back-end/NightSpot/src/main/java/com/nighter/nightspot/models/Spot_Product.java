@@ -13,21 +13,19 @@ import java.time.LocalTime;
 @Entity(name = "spot_product")
 public class Spot_Product {
 
-    @EmbeddedId
-    private Spot_ProductKey id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @ManyToOne
-    @MapsId("spotId")
     @JoinColumn(name = "spot_id")
     private Spot spot;
 
     @ManyToOne
-    @MapsId("productId")
     @JoinColumn(name = "product_id")
     private Product product;
 
     @Column(nullable = false)
     private Double price;
-
 
 }

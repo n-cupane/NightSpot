@@ -5,7 +5,6 @@ import com.nighter.nightspot.dto.user.UserWithoutListsDTO;
 import com.nighter.nightspot.dto.user.UserWithoutVisitsDTO;
 import com.nighter.nightspot.models.Spot;
 import com.nighter.nightspot.models.User;
-import com.nighter.nightspot.models.VisitKey;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,7 +15,7 @@ import java.time.LocalTime;
 @Setter
 public class VisitDTO {
 
-    private VisitKey id;
+    private Long id;
 
     private UserWithoutListsDTO user;
 

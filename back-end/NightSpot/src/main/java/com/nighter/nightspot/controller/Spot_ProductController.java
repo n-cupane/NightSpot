@@ -4,7 +4,6 @@ import com.nighter.nightspot.dto.spot_product.InsertSpotProductDTO;
 import com.nighter.nightspot.dto.spot_product.SpotProductDTO;
 import com.nighter.nightspot.dto.spot_product.UpdateSpotProductDTO;
 import com.nighter.nightspot.error.exception.NoResultException;
-import com.nighter.nightspot.models.Spot_ProductKey;
 import com.nighter.nightspot.service.definition.Spot_ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +40,7 @@ public class Spot_ProductController {
     }
 
     @GetMapping("/spot_product/findById/id/{id}")
-    public ResponseEntity<SpotProductDTO> findById(@PathVariable Spot_ProductKey id) throws NoResultException {
+    public ResponseEntity<SpotProductDTO> findById(@PathVariable Long id) throws NoResultException {
         SpotProductDTO s = spotProductService.findById(id);
         return ResponseEntity.ok(s);
     }

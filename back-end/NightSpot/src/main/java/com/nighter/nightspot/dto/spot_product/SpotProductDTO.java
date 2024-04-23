@@ -2,7 +2,6 @@ package com.nighter.nightspot.dto.spot_product;
 
 import com.nighter.nightspot.dto.spot.SpotWithCategoryDTO;
 import com.nighter.nightspot.models.Product;
-import com.nighter.nightspot.models.Spot_ProductKey;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -11,7 +10,7 @@ import lombok.Data;
 public class SpotProductDTO {
 
     @NotBlank(message = "Id cannot be blank")
-    private Spot_ProductKey id;
+    private Long id;
 
     @NotNull(message = "Spot cannot be null")
     private SpotWithCategoryDTO spot;

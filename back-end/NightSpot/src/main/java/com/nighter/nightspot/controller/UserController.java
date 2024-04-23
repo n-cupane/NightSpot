@@ -63,7 +63,7 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @GetMapping("/user/show/username/{username}")
+    @GetMapping("/auth/user/show/username/{username}")
     public ResponseEntity<UserDTO> showUserByUsername(@PathVariable String username) throws NoResultException {
         UserDTO user = userService.findByUsername(username);
         return ResponseEntity.ok(user);
