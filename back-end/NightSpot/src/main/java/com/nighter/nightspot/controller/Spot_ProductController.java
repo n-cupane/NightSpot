@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/spot_product")
 public class Spot_ProductController {
 
     @Autowired

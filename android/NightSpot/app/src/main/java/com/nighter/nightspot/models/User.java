@@ -16,9 +16,9 @@ public class User {
 //    private LocalDate dateOfBirth;
     private byte[] photo;
 
-   private List<Ticket> tickets;
-   private List<Visit> visits;
-   private List<Review> reviews;
+    private List<Ticket> tickets;
+    private List<Visit> visits;
+    private List<Review> reviews;
     private List<Spot> spots;
 
     public Long getId() {

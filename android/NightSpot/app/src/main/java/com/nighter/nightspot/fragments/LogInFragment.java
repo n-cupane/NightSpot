@@ -58,12 +58,19 @@ public class LogInFragment extends Fragment {
             user.setUsername(username);
             user.setPassword(password);
 
+            System.out.println(username);
+            System.out.println(password);
+
             userApi.login(user)
                     .enqueue(new retrofit2.Callback<User>() {
                         @Override
                         public void onResponse(retrofit2.Call<User> call, retrofit2.Response<User> response) {
                             Toast.makeText(getContext(), "Save successful", Toast.LENGTH_SHORT).show();
+                            System.out.println(response.code());
                             System.out.println(response.body().toString());
+                            NavController navController = Navigation.findNavController(view);
+                            NavDirections toHome = LogInFragmentDirections.loginToHome();
+                            navController.navigate(toHome);
                         }
 
                         @Override

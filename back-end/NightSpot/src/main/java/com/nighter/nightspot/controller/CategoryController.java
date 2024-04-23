@@ -19,13 +19,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/category")
 public class CategoryController {
 
     @Autowired
     private CategoryService categoryService;
 
-    @PostMapping("/insert")
+    @PostMapping("/all/category/insert")
     public ResponseEntity<Void> insert(@Valid @RequestBody InsertCategoryDTO insertCategoryDTO) {
         try {
             categoryService.insert(insertCategoryDTO);
