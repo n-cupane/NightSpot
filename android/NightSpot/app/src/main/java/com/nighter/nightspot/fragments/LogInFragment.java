@@ -50,6 +50,7 @@ public class LogInFragment extends Fragment {
         RetrofitService retrofitService = new RetrofitService();
         UserApi userApi = retrofitService.getRetrofit().create(UserApi.class);
 
+
         binding.logIn.setOnClickListener(b -> {
 
             String username = binding.logInEmail.getText().toString();
@@ -68,6 +69,7 @@ public class LogInFragment extends Fragment {
                         public void onResponse(retrofit2.Call<Void> call, retrofit2.Response<Void> response) {
                             Toast.makeText(getContext(), "Save successful", Toast.LENGTH_SHORT).show();
                             SharedPref.saveToken(getContext(),response.headers().get("Authorization"));
+                            SharedPref.saveCredentials(getContext(),user);
                             NavController navController = Navigation.findNavController(view);
                             NavDirections toHome = LogInFragmentDirections.loginToHome();
                             navController.navigate(toHome);

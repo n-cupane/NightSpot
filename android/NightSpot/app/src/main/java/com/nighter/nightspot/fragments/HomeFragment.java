@@ -23,6 +23,7 @@ import com.nighter.nightspot.models.User;
 import com.nighter.nightspot.retrofit.RetrofitService;
 import com.nighter.nightspot.retrofit.SpotApi;
 import com.nighter.nightspot.retrofit.UserApi;
+import com.nighter.nightspot.sharedpreferences.SharedPref;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -50,6 +51,7 @@ public class HomeFragment extends Fragment {
 
         RetrofitService retrofitService = new RetrofitService();
         SpotApi spotApi = retrofitService.getRetrofit().create(SpotApi.class);
+        UserApi userApi = retrofitService.getRetrofit().create(UserApi.class);
         spotApi.findAllWithCategory("frax","Operatore.2").enqueue(new retrofit2.Callback<List<Spot>>() {
             @Override
             public void onResponse(retrofit2.Call<List<Spot>> call, retrofit2.Response<List<Spot>> response) {
@@ -72,9 +74,26 @@ public class HomeFragment extends Fragment {
 
 
         binding.MyProfile.setOnClickListener(v -> {
-            NavController navController = Navigation.findNavController(view);
-            NavDirections toHome = LogInFragmentDirections.loginToHome();
-            navController.navigate(toHome);
+            String username = SharedPref.loadCredentials(getContext()).getUsername();
+            String token = SharedPref.loadToken(getContext());
+            userApi.getUserByUsername(username,"Bearer "+token).enqueue(new retrofit2.Callback<User>(){
+
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    User u = response.body();
+                    NavController navController = Navigation.findNavController(view);
+                    NavDirections toUser = HomeFragmentDirections.homeToUser(u);
+                    navController.navigate(toUser);
+
+                }
+
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    Toast.makeText(getContext(), "Load failed", Toast.LENGTH_SHORT).show();
+                    Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, "Error occured", t);
+                }
+            });
+
         });
 
 

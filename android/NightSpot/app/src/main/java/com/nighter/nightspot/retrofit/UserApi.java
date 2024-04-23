@@ -7,7 +7,9 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface UserApi {
 
@@ -19,5 +21,8 @@ public interface UserApi {
 
     @POST("/all/user/login")
     Call<Void> login(@Body User user);
+
+    @GET("/auth/user/show/username/{username}")
+    Call<User> getUserByUsername(@Path("username") String Username, @Header("Authorization") String token);
 
 }
