@@ -13,6 +13,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nighter.nightspot.R;
+import com.nighter.nightspot.fragments.HomeFragmentDirections;
 import com.nighter.nightspot.models.Spot;
 
 public class SpotViewHolder extends RecyclerView.ViewHolder {
@@ -32,7 +33,11 @@ public class SpotViewHolder extends RecyclerView.ViewHolder {
     public void setSpot(Spot spot) {
         this.spot = spot;
         spotName.setText(spot.getName());
-
+        itemView.setOnClickListener(v -> {
+            NavController controller = Navigation.findNavController(v);
+            NavDirections destionation = HomeFragmentDirections.homeToSpot(spot);
+            controller.navigate(destionation);
+        });
     }
 
 }

@@ -26,6 +26,10 @@
             android:id="@+id/home_to_user"
             app:destination="@id/user_fragment"/>
 
+        <action
+            android:id="@+id/home_to_spot"
+            app:destination="@id/spot_fragment"/>
+
     </fragment>
 
     <fragment
@@ -41,5 +45,15 @@
 
     </fragment>
 
+    <fragment
+        android:id="@+id/spot_fragment"
+        android:name="com.nighter.nightspot.fragments.SpotFragment"
+        android:label="Spot"
+        tools:layout="@layout/fragment_spot">
+
+        <argument
+            android:name="spot"
+            app:argType="com.nighter.nightspot.models.Spot"/>
+    </fragment>
 
 </navigation>
