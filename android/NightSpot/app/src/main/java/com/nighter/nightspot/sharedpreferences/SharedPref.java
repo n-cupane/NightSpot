@@ -35,5 +35,15 @@ public class SharedPref {
         return u;
     }
 
+    public static void saveToken(Context context, String token) {
+
+        SharedPreferences sharedPreferences = context.getSharedPreferences(
+                "credentials",
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("token", token);
+        editor.apply();
+    }
+
 
 }

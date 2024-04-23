@@ -62,9 +62,9 @@ public class LogInFragment extends Fragment {
             System.out.println(password);
 
             userApi.login(user)
-                    .enqueue(new retrofit2.Callback<User>() {
+                    .enqueue(new retrofit2.Callback<String>() {
                         @Override
-                        public void onResponse(retrofit2.Call<User> call, retrofit2.Response<User> response) {
+                        public void onResponse(retrofit2.Call<String> call, retrofit2.Response<String> response) {
                             Toast.makeText(getContext(), "Save successful", Toast.LENGTH_SHORT).show();
                             System.out.println(response.code());
                             System.out.println(response.body().toString());
@@ -74,7 +74,7 @@ public class LogInFragment extends Fragment {
                         }
 
                         @Override
-                        public void onFailure(retrofit2.Call<User> call, Throwable t) {
+                        public void onFailure(retrofit2.Call<String> call, Throwable t) {
                             Toast.makeText(getContext(), "Save failed", Toast.LENGTH_SHORT).show();
                             Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, "Error occured", t);
                         }
