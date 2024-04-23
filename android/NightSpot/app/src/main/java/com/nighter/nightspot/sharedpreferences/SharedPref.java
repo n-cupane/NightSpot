@@ -45,5 +45,16 @@ public class SharedPref {
         editor.apply();
     }
 
+    public static String loadToken(Context context) {
+
+        SharedPreferences sharedPreferences = context.getSharedPreferences(
+                "credentials",
+                Context.MODE_PRIVATE
+        );
+        String token = sharedPreferences.getString("token", "");
+
+        return token;
+    }
+
 
 }
