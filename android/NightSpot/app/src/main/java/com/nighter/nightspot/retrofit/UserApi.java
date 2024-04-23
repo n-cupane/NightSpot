@@ -18,6 +18,6 @@ public interface UserApi {
     Call<Void> save(@Body User user);
 
     @POST("/all/user/login")
-    Call<String> login(@Body User user);
+    Call<Void> login(@Body User user);
 
 }

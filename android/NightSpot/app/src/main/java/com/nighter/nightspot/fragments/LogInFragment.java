@@ -22,6 +22,7 @@ import com.nighter.nightspot.databinding.FragmentLogInBinding;
 import com.nighter.nightspot.models.User;
 import com.nighter.nightspot.retrofit.RetrofitService;
 import com.nighter.nightspot.retrofit.UserApi;
+import com.nighter.nightspot.sharedpreferences.SharedPref;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -62,19 +63,19 @@ public class LogInFragment extends Fragment {
             System.out.println(password);
 
             userApi.login(user)
-                    .enqueue(new retrofit2.Callback<String>() {
+                    .enqueue(new retrofit2.Callback<Void>() {
                         @Override
-                        public void onResponse(retrofit2.Call<String> call, retrofit2.Response<String> response) {
+                        public void onResponse(retrofit2.Call<Void> call, retrofit2.Response<Void> response) {
                             Toast.makeText(getContext(), "Save successful", Toast.LENGTH_SHORT).show();
-                            System.out.println(response.code());
-                            System.out.println(response.body().toString());
+                            SharedPref.saveToken(getContext(),response.headers().get("Authorization"));
                             NavController navController = Navigation.findNavController(view);
                             NavDirections toHome = LogInFragmentDirections.loginToHome();
                             navController.navigate(toHome);
+
                         }
 
                         @Override
-                        public void onFailure(retrofit2.Call<String> call, Throwable t) {
+                        public void onFailure(retrofit2.Call<Void> call, Throwable t) {
                             Toast.makeText(getContext(), "Save failed", Toast.LENGTH_SHORT).show();
                             Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, "Error occured", t);
                         }
