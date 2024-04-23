@@ -17,4 +17,5 @@ public interface SpotApi {
     Call<List<Spot>> findAllWithCategory(@Header("username") String username, @Header("password") String password);
 
 
+
 }
