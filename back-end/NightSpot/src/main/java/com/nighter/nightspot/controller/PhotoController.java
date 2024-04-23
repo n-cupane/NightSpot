@@ -18,7 +18,7 @@ public class PhotoController {
     @Autowired
     private PhotoService photoService;
 
-    @PostMapping("/insert")
+    @PostMapping("/photo/insert")
     public ResponseEntity<Void> insertPhoto(@Valid @RequestBody InsertPhotoDTO photo) {
         try {
             photoService.save(photo);
@@ -28,7 +28,7 @@ public class PhotoController {
         }
     }
 
-    @PostMapping("/update")
+    @PostMapping("/photo/update")
     public ResponseEntity<Void> updatePhoto(@Valid @RequestBody UpdatePhotoDTO photo) {
         try {
             photoService.save(photo);
@@ -38,19 +38,19 @@ public class PhotoController {
         }
     }
 
-    @GetMapping("/show/id/{id}")
+    @GetMapping("/photo/show/id/{id}")
     public ResponseEntity<PhotoDTO> showPhoto(@PathVariable Long id) throws NoResultException {
         PhotoDTO photo = photoService.findById(id);
         return ResponseEntity.ok(photo);
     }
 
-    @GetMapping("/show-all")
+    @GetMapping("/photo/show-all")
     public ResponseEntity<List<PhotoDTO>> showAllPhotos() {
         List<PhotoDTO> photos = photoService.findAll();
         return ResponseEntity.ok(photos);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/photo/delete/{id}")
     public ResponseEntity<Void> deletePhoto(@PathVariable Long id) throws NoResultException {
         photoService.deleteById(id);
         return ResponseEntity.ok().build();

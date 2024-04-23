@@ -34,7 +34,7 @@ public class CategoryController {
         }
     }
 
-    @PostMapping("/update")
+    @PostMapping("/category/update")
     public ResponseEntity<Void> update(@Valid @RequestBody UpdateCategoryDTO updateCategoryDTO) {
         try {
             categoryService.update(updateCategoryDTO);
@@ -44,13 +44,13 @@ public class CategoryController {
         }
     }
 
-    @DeleteMapping("/deleteById/{id}")
+    @DeleteMapping("/category/deleteById/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable Long id) throws NoResultException {
         categoryService.deleteById(id);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/findByIdWithoutSpot/id/{aLong}")
+    @GetMapping("/category/findByIdWithoutSpot/id/{aLong}")
     public ResponseEntity<CategoryWithoutSpotsDTO> findByIdWithoutCategory(@PathVariable Long aLong) throws NoResultException {
 
         CategoryWithoutSpotsDTO c = categoryService.findByIdWithoutSpots(aLong);
@@ -58,7 +58,7 @@ public class CategoryController {
 
     }
 
-    @GetMapping("/findByIdWithSpot/id/{aLong}")
+    @GetMapping("/category/findByIdWithSpot/id/{aLong}")
     public ResponseEntity<CategoryWithSpotsDTO> findByIdWithCategory(@PathVariable Long aLong) throws NoResultException {
 
         CategoryWithSpotsDTO c = categoryService.findByIdWithSpots(aLong);
@@ -66,13 +66,13 @@ public class CategoryController {
 
     }
 
-    @GetMapping("/findAllWithSpots")
+    @GetMapping("/category/findAllWithSpots")
     public ResponseEntity<List<CategoryWithSpotsDTO>> findAllWithSpots() throws NoResultException {
         List<CategoryWithSpotsDTO> c = categoryService.findAllWithSpots();
         return ResponseEntity.ok(c);
     }
 
-    @GetMapping("/findAllWithoutCategory")
+    @GetMapping("/category/findAllWithoutCategory")
     public ResponseEntity<List<CategoryWithoutSpotsDTO>> findAllWithoutSpots() throws NoResultException {
         List<CategoryWithoutSpotsDTO> c = categoryService.findAllWithoutSpots();
         return ResponseEntity.ok(c);

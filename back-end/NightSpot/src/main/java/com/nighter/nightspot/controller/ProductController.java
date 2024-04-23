@@ -18,7 +18,7 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @PostMapping("/insert")
+    @PostMapping("/product/insert")
     public ResponseEntity<Void> insertProduct(@Valid @RequestBody InsertProductDTO product) {
         try {
             productService.save(product);
@@ -28,7 +28,7 @@ public class ProductController {
         }
     }
 
-    @PostMapping("/update")
+    @PostMapping("/product/update")
     public ResponseEntity<Void> updateProduct(@Valid @RequestBody UpdateProductDTO product) {
         try {
             productService.save(product);
@@ -38,19 +38,19 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/show/id/{id}")
+    @GetMapping("/product/show/id/{id}")
     public ResponseEntity<ProductDTO> showProduct(@PathVariable Long id) throws NoResultException {
         ProductDTO product = productService.findById(id);
         return ResponseEntity.ok(product);
     }
 
-    @GetMapping("/show-all")
+    @GetMapping("/product/show-all")
     public ResponseEntity<List<ProductDTO>> showAllProduct() {
         List<ProductDTO> products = productService.findAll();
         return ResponseEntity.ok(products);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/product/delete/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) throws NoResultException {
         productService.deleteById(id);
         return ResponseEntity.ok().build();
