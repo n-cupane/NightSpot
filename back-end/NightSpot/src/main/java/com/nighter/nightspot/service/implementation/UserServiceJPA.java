@@ -8,9 +8,11 @@ import com.nighter.nightspot.mapper.UserMapper;
 import com.nighter.nightspot.models.Role;
 import com.nighter.nightspot.models.User;
 import com.nighter.nightspot.repository.UserRepositoryJPA;
+import com.nighter.nightspot.security.jwt.JWTUtilities;
 import com.nighter.nightspot.service.definition.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -28,6 +30,8 @@ public class UserServiceJPA implements UserService {
     private final UserMapper mapper;
 
     private final PasswordEncoder passwordEncoder;
+
+    private final JWTUtilities jwtUtilities;
 
 
     @Override
@@ -91,14 +95,17 @@ public class UserServiceJPA implements UserService {
     }
 
     @Override
-    public UserDTO login(String username, String password) throws NoResultException {
+    public String login(String username, String password) throws NoResultException {
 
-        Optional<User> optionalUser = repo.findByUsername(username);
-        if(optionalUser.isPresent()) {
-            if (!passwordEncoder.matches(password, optionalUser.get().getPassword())) return null;
-            return mapper.toUserDTO(optionalUser.get());
+        User user = repo.findByUsername(username)
+                .orElseThrow(
+                        () -> new UsernameNotFoundException("Username not found: " + username)
+                );
+
+        if (passwordEncoder.matches(password, user.getPassword())) {
+            return jwtUtilities.generateToken(user);
         }
-        throw new UsernameNotFoundException("Username not found: " + username);
+        else throw new BadCredentialsException("Wrong password");
 
     }
 }

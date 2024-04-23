@@ -2,14 +2,21 @@ package com.nighter.nightspot.error.handler;
 
 import com.nighter.nightspot.dto.validation.ValidationErrorMessageDTO;
 import com.nighter.nightspot.error.exception.NoResultException;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.MalformedJwtException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 
+import java.net.URI;
+import java.security.SignatureException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -42,6 +49,51 @@ public class ErrorHandler {
                         )
         );
         return ResponseEntity.badRequest().body(errorMessage);
+    }
+
+    @ExceptionHandler({UsernameNotFoundException.class, BadCredentialsException.class, ExpiredJwtException.class,
+            MalformedJwtException.class, SignatureException.class})
+    public ProblemDetail handleJwtError(Exception e) {
+
+        ProblemDetail p = null;
+
+        if (e instanceof UsernameNotFoundException) {
+            p = ProblemDetail.forStatus(HttpStatus.FORBIDDEN.value());
+            p.setType(URI.create("BAD_CREDENTIALS"));
+            p.setTitle("Username not found");
+            p.setDetail(e.getMessage());
+        }
+
+        else if (e instanceof BadCredentialsException) {
+            p = ProblemDetail.forStatus(HttpStatus.FORBIDDEN.value());
+            p.setType(URI.create("BAD_CREDENTIALS"));
+            p.setTitle("Wrong password");
+            p.setDetail(e.getMessage());
+        }
+
+        else if (e instanceof ExpiredJwtException) {
+            p = ProblemDetail.forStatus(HttpStatus.UNAUTHORIZED.value());
+            p.setType(URI.create("TOKEN_ERROR"));
+            p.setTitle("Expired token");
+            p.setDetail(e.getMessage());
+        }
+
+        else if (e instanceof MalformedJwtException) {
+            p = ProblemDetail.forStatus(HttpStatus.UNAUTHORIZED.value());
+            p.setType(URI.create("TOKEN_ERROR"));
+            p.setTitle("Malformed token");
+            p.setDetail(e.getMessage());
+        }
+
+        else if (e instanceof SignatureException) {
+            p = ProblemDetail.forStatus(HttpStatus.UNAUTHORIZED.value());
+            p.setType(URI.create("TOKEN_ERROR"));
+            p.setTitle("Wrong signature");
+            p.setDetail(e.getMessage());
+        }
+
+        return p;
+
     }
 
 }

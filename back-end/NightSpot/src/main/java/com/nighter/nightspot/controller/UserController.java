@@ -70,9 +70,12 @@ public class UserController {
     }
 
     @PostMapping("/all/user/login")
-    public ResponseEntity<UserDTO> login(@RequestBody UserDTO loggingUser) throws Exception {
-        UserDTO user = userService.login(loggingUser.getUsername(), loggingUser.getPassword());
-        return ResponseEntity.ok(user);
+    public ResponseEntity<String> login(@RequestBody UserDTO loggingUser) throws Exception {
+        String token = userService.login(loggingUser.getUsername(), loggingUser.getPassword());
+        return ResponseEntity
+                .ok()
+                .header("Authorization", token)
+                .build();
     }
 
 }
