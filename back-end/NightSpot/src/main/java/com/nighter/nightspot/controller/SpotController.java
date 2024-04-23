@@ -30,7 +30,7 @@ public class SpotController {
         }
     }
 
-    @PostMapping("/update")
+    @PostMapping("/spot/update")
     public ResponseEntity<Void> update(@Valid @RequestBody UpdateSpotDTO updateSpotDTO) {
         try {
             spotService.update(updateSpotDTO);
@@ -40,7 +40,7 @@ public class SpotController {
         }
     }
 
-    @GetMapping("/findByIdWithoutCategory/id/{aLong}")
+    @GetMapping("/spot/findByIdWithoutCategory/id/{aLong}")
     public ResponseEntity<SpotWithoutCategoryDTO> findByIdWithoutCategory( @PathVariable Long aLong) throws NoResultException {
 
         SpotWithoutCategoryDTO s = spotService.findByIdWithoutCategory(aLong);
@@ -48,7 +48,7 @@ public class SpotController {
 
     }
 
-    @GetMapping("/findByIdWithCategory/id/{aLong}")
+    @GetMapping("/spot/findByIdWithCategory/id/{aLong}")
     public ResponseEntity<SpotWithCategoryDTO> findByIdWithCategory( @PathVariable Long aLong) throws NoResultException {
 
         SpotWithCategoryDTO s = spotService.findByIdWithCategory(aLong);
@@ -68,7 +68,7 @@ public class SpotController {
         return ResponseEntity.ok(s);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/spot/delete/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable Long id) throws NoResultException{
         spotService.deleteById(id);
         return ResponseEntity.ok().build();
