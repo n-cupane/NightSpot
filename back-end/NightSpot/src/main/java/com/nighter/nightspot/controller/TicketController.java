@@ -19,7 +19,7 @@ public class TicketController {
     @Autowired
     private TicketService ticketService;
 
-    @PostMapping("/insert")
+    @PostMapping("/ticket/insert")
     public ResponseEntity<Void> insertTicket(@Valid @RequestBody InsertTicketDTO ticket) {
         try {
             ticketService.save(ticket);
@@ -29,7 +29,7 @@ public class TicketController {
         }
     }
 
-    @PostMapping("/update")
+    @PostMapping("/ticket/update")
     public ResponseEntity<Void> updateTicket(@Valid @RequestBody UpdateTicketDTO ticket) {
         try {
             ticketService.save(ticket);
@@ -39,19 +39,19 @@ public class TicketController {
         }
     }
 
-    @GetMapping("/show/id/{id}")
+    @GetMapping("/ticket/show/id/{id}")
     public ResponseEntity<TicketDTO> showTicket(@PathVariable Long id) throws NoResultException {
         TicketDTO ticket = ticketService.findById(id);
         return ResponseEntity.ok(ticket);
     }
 
-    @GetMapping("/show-all")
+    @GetMapping("/ticket/show-all")
     public ResponseEntity<List<TicketDTO>> showAllTickets() {
         List<TicketDTO> tickets = ticketService.findAll();
         return ResponseEntity.ok(tickets);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/ticket/delete/{id}")
     public ResponseEntity<Void> deleteTicket(@PathVariable Long id) throws NoResultException {
         ticketService.deleteById(id);
         return ResponseEntity.ok().build();

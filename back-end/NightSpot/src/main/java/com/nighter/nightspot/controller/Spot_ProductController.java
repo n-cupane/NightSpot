@@ -19,7 +19,7 @@ public class Spot_ProductController {
     @Autowired
     private Spot_ProductService spotProductService;
 
-    @PostMapping("/insert")
+    @PostMapping("/spot_product/insert")
     public ResponseEntity<Void> insert(@Valid @RequestBody InsertSpotProductDTO insertSpotProductDTO) {
         try {
             spotProductService.insert(insertSpotProductDTO);
@@ -30,7 +30,7 @@ public class Spot_ProductController {
 
     }
 
-    @PostMapping("/update")
+    @PostMapping("/spot_product/update")
     public ResponseEntity<Void> update(@Valid @RequestBody UpdateSpotProductDTO updateSpotProductDTO) {
         try {
             spotProductService.update(updateSpotProductDTO);
@@ -40,19 +40,19 @@ public class Spot_ProductController {
         }
     }
 
-    @GetMapping("/findById/id/{id}")
+    @GetMapping("/spot_product/findById/id/{id}")
     public ResponseEntity<SpotProductDTO> findById(@PathVariable Spot_ProductKey id) throws NoResultException {
         SpotProductDTO s = spotProductService.findById(id);
         return ResponseEntity.ok(s);
     }
 
-    @GetMapping("/findAll")
+    @GetMapping("/spot_product/findAll")
     public ResponseEntity<List<SpotProductDTO>> findAll() throws NoResultException {
         List<SpotProductDTO> s =spotProductService.findAll();
         return ResponseEntity.ok(s);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/spot_product/delete/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable Long id) throws NoResultException {
         spotProductService.deleteById(id);
         return ResponseEntity.ok().build();

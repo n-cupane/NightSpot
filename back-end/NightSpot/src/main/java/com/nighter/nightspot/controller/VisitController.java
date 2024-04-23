@@ -20,7 +20,7 @@ public class VisitController {
     @Autowired
     private VisitService visitService;
 
-    @PostMapping("/insert")
+    @PostMapping("/auth/visit/insert")
     public ResponseEntity<Void> insert(@Valid @RequestBody InsertVisitDTO visit) {
         try {
             visitService.save(visit);
@@ -30,7 +30,7 @@ public class VisitController {
         }
     }
 
-    @PostMapping("/update")
+    @PostMapping("/auth/visit/update")
     public ResponseEntity<Void> update(@Valid @RequestBody UpdateVisitDTO visit) {
         try {
             visitService.save(visit);
@@ -40,19 +40,19 @@ public class VisitController {
         }
     }
 
-    @GetMapping("/show/id/{uId}/{sId}")
+    @GetMapping("/auth/visit/show/id/{uId}/{sId}")
     public ResponseEntity<VisitDTO> showVisit(@PathVariable Long uId, @PathVariable Long sId) throws NoResultException {
         VisitDTO visit = visitService.findByIds(uId, sId);
         return ResponseEntity.ok(visit);
     }
 
-    @GetMapping("/show-all")
+    @GetMapping("/auth/visit/show-all")
     public ResponseEntity<List<VisitDTO>> showAllVisits() {
         List<VisitDTO> visits = visitService.findAll();
         return ResponseEntity.ok(visits);
     }
 
-    @DeleteMapping("/delete/{uId}/{sId}")
+    @DeleteMapping("/auth/visit/delete/{uId}/{sId}")
     public ResponseEntity<Void> delete(@PathVariable Long uId, @PathVariable Long sId) throws NoResultException {
         visitService.deleteByIds(uId, sId);
         return ResponseEntity.ok().build();

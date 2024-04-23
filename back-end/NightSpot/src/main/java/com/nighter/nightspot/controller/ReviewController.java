@@ -18,7 +18,7 @@ public class ReviewController {
     @Autowired
     private ReviewService reviewService;
 
-    @PostMapping("/insert")
+    @PostMapping("/review/insert")
     public ResponseEntity<Void> insert(@Valid @RequestBody InsertReviewDTO insertReviewDTO) {
         try {
             reviewService.insert(insertReviewDTO);
@@ -28,7 +28,7 @@ public class ReviewController {
         }
     }
 
-    @PostMapping("/update")
+    @PostMapping("/review/update")
     public ResponseEntity<Void> update(@Valid @RequestBody UpdateReviewDTO updateReviewDTO) {
         try {
             reviewService.update(updateReviewDTO);
@@ -38,19 +38,19 @@ public class ReviewController {
         }
     }
 
-    @GetMapping("/findById/id/{id}")
+    @GetMapping("/review/findById/id/{id}")
     public ResponseEntity<ReviewDTO> findById(@PathVariable Long id) throws NoResultException {
         ReviewDTO r = reviewService.findById(id);
         return ResponseEntity.ok(r);
     }
 
-    @GetMapping("/findAll")
+    @GetMapping("/review/findAll")
     public ResponseEntity<List<ReviewDTO>> findAll() throws NoResultException{
         List<ReviewDTO> r = reviewService.findAll();
         return ResponseEntity.ok(r);
     }
 
-    @DeleteMapping("/deleteById/{id}")
+    @DeleteMapping("/review/deleteById/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable  Long id) throws NoResultException {
         reviewService.deleteById(id);
         return ResponseEntity.ok().build();
