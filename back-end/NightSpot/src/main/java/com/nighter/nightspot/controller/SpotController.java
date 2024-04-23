@@ -20,7 +20,7 @@ public class SpotController {
     @Autowired
     private SpotService spotService;
 
-    @PostMapping("/insert")
+    @PostMapping("/all/spot/insert")
     public ResponseEntity<Void> insert(@Valid @RequestBody InsertSpotDTO insertSpotDTO) {
         try {
             spotService.insert(insertSpotDTO);
@@ -56,13 +56,13 @@ public class SpotController {
 
     }
 
-    @GetMapping("/findAllWithCategory")
+    @GetMapping("/all/spot/findAllWithCategory")
     public ResponseEntity<List<SpotWithCategoryDTO>> findAllWithCategory() throws NoResultException {
         List<SpotWithCategoryDTO> s = spotService.findAllWithCategory();
         return ResponseEntity.ok(s);
     }
 
-    @GetMapping("/findAllWithoutCategory")
+    @GetMapping("/all/spot/findAllWithoutCategory")
     public ResponseEntity<List<SpotWithoutCategoryDTO>> findAllWithoutCategory() throws NoResultException {
         List<SpotWithoutCategoryDTO> s = spotService.findAlWithoutCategory();
         return ResponseEntity.ok(s);

@@ -24,7 +24,7 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @PostMapping("/insert")
+    @PostMapping("/all/category/insert")
     public ResponseEntity<Void> insert(@Valid @RequestBody InsertCategoryDTO insertCategoryDTO) {
         try {
             categoryService.insert(insertCategoryDTO);
