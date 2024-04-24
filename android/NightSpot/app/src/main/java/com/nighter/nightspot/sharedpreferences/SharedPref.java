@@ -14,7 +14,7 @@ public class SharedPref {
                 Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putLong("id", credentials.getId());
+
         editor.putString("username", credentials.getUsername());
         editor.putString("password", credentials.getPassword());
         editor.apply();
@@ -28,7 +28,7 @@ public class SharedPref {
         );
 
         User u = new User();
-        u.setId(sharedPreferences.getLong("id", -1));
+
         u.setUsername(sharedPreferences.getString("username", ""));
         u.setPassword(sharedPreferences.getString("password", ""));
 

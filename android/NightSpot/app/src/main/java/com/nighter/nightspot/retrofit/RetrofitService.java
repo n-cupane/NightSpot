@@ -15,7 +15,7 @@ public class RetrofitService {
 
     private void initializeRetrofit() {
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.62:8080")
+                .baseUrl("http://fraxthrough.duckdns.org:57435")
                 .addConverterFactory(GsonConverterFactory.create(new Gson()))
                 .build();
     }

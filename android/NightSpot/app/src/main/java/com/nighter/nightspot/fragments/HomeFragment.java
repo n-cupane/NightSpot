@@ -52,7 +52,7 @@ public class HomeFragment extends Fragment {
         RetrofitService retrofitService = new RetrofitService();
         SpotApi spotApi = retrofitService.getRetrofit().create(SpotApi.class);
         UserApi userApi = retrofitService.getRetrofit().create(UserApi.class);
-        spotApi.findAllWithCategory("frax","Operatore.2").enqueue(new retrofit2.Callback<List<Spot>>() {
+        spotApi.findAllWithCategory(SharedPref.loadCredentials(getContext()).getUsername(),SharedPref.loadCredentials(getContext()).getPassword()).enqueue(new retrofit2.Callback<List<Spot>>() {
             @Override
             public void onResponse(retrofit2.Call<List<Spot>> call, retrofit2.Response<List<Spot>> response) {
                 System.out.println(response.code());

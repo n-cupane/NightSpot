@@ -1,10 +1,11 @@
 package com.nighter.nightspot.models;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
-public class User {
+public class User implements Serializable {
 
     private Long id;
     private String firstName;
