@@ -13,12 +13,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin()
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-//    @CrossOrigin(origins = "http://127.0.0.1:5500/")
+
     @PostMapping("/all/user/insert")
     public ResponseEntity<Void> insertUser(@Valid @RequestBody InsertUserDTO user) {
         try {

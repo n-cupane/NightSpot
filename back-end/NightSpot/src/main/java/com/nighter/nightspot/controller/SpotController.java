@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.Controller;
 import java.util.List;
 
 @RestController
+@CrossOrigin()
 public class SpotController {
 
     @Autowired
