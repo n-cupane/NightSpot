@@ -1,11 +1,14 @@
 package com.nighter.nightspot.service.implementation;
 
+import com.nighter.nightspot.dto.spot.SpotWithCategoryDTO;
 import com.nighter.nightspot.dto.user.InsertUserDTO;
 import com.nighter.nightspot.dto.user.UpdateUserDTO;
 import com.nighter.nightspot.dto.user.UserDTO;
 import com.nighter.nightspot.error.exception.NoResultException;
+import com.nighter.nightspot.mapper.SpotMapper;
 import com.nighter.nightspot.mapper.UserMapper;
 import com.nighter.nightspot.models.Role;
+import com.nighter.nightspot.models.Spot;
 import com.nighter.nightspot.models.User;
 import com.nighter.nightspot.repository.UserRepositoryJPA;
 import com.nighter.nightspot.security.jwt.JWTUtilities;
@@ -28,6 +31,8 @@ public class UserServiceJPA implements UserService {
     private UserRepositoryJPA repo;
 
     private final UserMapper mapper;
+
+    private final SpotMapper spotMapper;
 
     private final PasswordEncoder passwordEncoder;
 
@@ -107,5 +112,13 @@ public class UserServiceJPA implements UserService {
         }
         else throw new BadCredentialsException("Wrong password");
 
+    }
+
+    @Override
+    public void addFavorite(SpotWithCategoryDTO spot, UserDTO user) {
+        Spot spot1 = spotMapper.fromSpotWithCategoryDTO(spot);
+        user.getSpots().add(spot1);
+        User u = mapper.fromUserDTO(user);
+        repo.save(u);
     }
 }

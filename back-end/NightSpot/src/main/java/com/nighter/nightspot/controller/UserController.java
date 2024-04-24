@@ -1,23 +1,32 @@
 package com.nighter.nightspot.controller;
 
+import com.nighter.nightspot.dto.spot.SpotWithCategoryDTO;
 import com.nighter.nightspot.dto.user.InsertUserDTO;
 import com.nighter.nightspot.dto.user.UpdateUserDTO;
 import com.nighter.nightspot.dto.user.UserDTO;
 import com.nighter.nightspot.error.exception.NoResultException;
+import com.nighter.nightspot.models.Spot;
+import com.nighter.nightspot.models.User;
+import com.nighter.nightspot.service.definition.SpotService;
 import com.nighter.nightspot.service.definition.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@CrossOrigin()
+@CrossOrigin(exposedHeaders = "Authorization")
 public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private SpotService spotService;
 
 
     @PostMapping("/all/user/insert")
@@ -77,6 +86,15 @@ public class UserController {
                 .ok()
                 .header("Authorization", token)
                 .build();
+    }
+
+    @PostMapping("auth/user/add-favorite/{spotId}")
+    public ResponseEntity<Void> addFavorite(@PathVariable Long spotId, UsernamePasswordAuthenticationToken upat) throws NoResultException {
+        UserDetails userDetails = (UserDetails) upat.getPrincipal();
+        UserDTO user = userService.findByUsername(userDetails.getUsername());
+        SpotWithCategoryDTO spot = spotService.findByIdWithCategory(spotId);
+        userService.addFavorite(spot, user);
+        return ResponseEntity.ok().build();
     }
 
 }

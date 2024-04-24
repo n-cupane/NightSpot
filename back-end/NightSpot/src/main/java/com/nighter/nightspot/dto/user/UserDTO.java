@@ -1,9 +1,6 @@
 package com.nighter.nightspot.dto.user;
 
-import com.nighter.nightspot.models.Review;
-import com.nighter.nightspot.models.Spot;
-import com.nighter.nightspot.models.Ticket;
-import com.nighter.nightspot.models.Visit;
+import com.nighter.nightspot.models.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
@@ -33,4 +30,6 @@ public class UserDTO {
     private List<Visit> visits;
     private List<Review> reviews;
     private List<Spot> spots; // favorites
+
+    private Role role;
 }

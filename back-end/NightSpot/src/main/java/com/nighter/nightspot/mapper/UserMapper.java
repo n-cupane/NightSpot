@@ -17,4 +17,6 @@ public interface UserMapper {
 
     User fromUpdateUserDTO(UpdateUserDTO updateUserDTO);
 
+    User fromUserDTO(UserDTO userDTO);
+
 }
