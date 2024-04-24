@@ -1,7 +1,9 @@
 package com.nighter.nightspot.models;
 
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
 
     private Long id;
 

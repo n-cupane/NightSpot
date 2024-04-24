@@ -2,11 +2,12 @@ package com.nighter.nightspot.models;
 
 
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 
-public class Visit {
+public class Visit implements Serializable {
 
     private VisitKey id = new VisitKey();
 

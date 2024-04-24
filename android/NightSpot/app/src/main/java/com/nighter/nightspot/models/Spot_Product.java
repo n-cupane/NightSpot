@@ -2,12 +2,13 @@ package com.nighter.nightspot.models;
 
 
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 
 
-public class Spot_Product {
+public class Spot_Product implements Serializable {
 
     private Spot_ProductKey id;
 

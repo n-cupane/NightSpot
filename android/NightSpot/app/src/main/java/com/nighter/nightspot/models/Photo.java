@@ -1,9 +1,10 @@
 package com.nighter.nightspot.models;
 
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class Photo {
+public class Photo implements Serializable {
 
 
     private Long id;
