@@ -37,6 +37,9 @@
         android:name="com.nighter.nightspot.fragments.UserFragment"
         android:label="User"
         tools:layout="@layout/fragment_user">
+        <action
+            android:id="@+id/user_to_modify"
+            app:destination="@id/modify_fragment"/>
         <argument
             android:name="user"
             app:argType="com.nighter.nightspot.models.User"/>
@@ -54,6 +57,21 @@
         <argument
             android:name="spot"
             app:argType="com.nighter.nightspot.models.Spot"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/modify_fragment"
+        android:name="com.nighter.nightspot.fragments.ModifyFragment"
+        android:label="Modify"
+        tools:layout="@layout/fragment_modify">
+
+        <action
+            android:id="@+id/modify_to_user"
+            app:destination="@id/user_fragment"/>
+
+        <argument
+            android:name="user"
+            app:argType="com.nighter.nightspot.models.User"/>
     </fragment>
 
 </navigation>
