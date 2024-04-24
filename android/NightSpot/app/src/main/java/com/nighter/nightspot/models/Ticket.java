@@ -1,9 +1,9 @@
 package com.nighter.nightspot.models;
 
 
+import java.io.Serializable;
 
-
-public class Ticket {
+public class Ticket implements Serializable {
 
     private Long id;
 

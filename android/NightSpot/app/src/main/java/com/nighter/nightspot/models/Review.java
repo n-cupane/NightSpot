@@ -2,11 +2,12 @@ package com.nighter.nightspot.models;
 
 
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 
 
-public class Review {
+public class Review implements Serializable {
     private Long id;
 
     private User user;
