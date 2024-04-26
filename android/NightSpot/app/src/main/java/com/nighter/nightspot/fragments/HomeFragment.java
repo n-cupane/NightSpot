@@ -76,11 +76,13 @@ public class HomeFragment extends Fragment {
         binding.MyProfile.setOnClickListener(v -> {
             String username = SharedPref.loadCredentials(getContext()).getUsername();
             String token = SharedPref.loadToken(getContext());
+            System.out.println(username);
             userApi.getUserByUsername(username,"Bearer "+token).enqueue(new retrofit2.Callback<User>(){
 
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {
                     User u = response.body();
+                    System.out.println(response.code());
                     NavController navController = Navigation.findNavController(view);
                     NavDirections toUser = HomeFragmentDirections.homeToUser(u);
                     navController.navigate(toUser);

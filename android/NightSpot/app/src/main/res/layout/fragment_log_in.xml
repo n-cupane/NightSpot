@@ -3,22 +3,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/grey">
+    android:background="@color/Nightviolet">
 
     <ImageView
         android:id="@+id/login_logo"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.12"
         android:src="@drawable/ns_logo"
+        app:layout_constraintBottom_toTopOf="@+id/Signin_header"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.12"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        app:layout_constraintTop_toTopOf="parent"
+    <TextView
+        android:id="@+id/registration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="signin"
+        android:fontFamily="@font/chirp_heavy"
+        android:textSize="30sp"
+        app:layout_constraintTop_toBottomOf="@id/login_logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/login_header"
-
-        android:layout_marginTop="120dp"
-        />
+        app:layout_constraintBottom_toTopOf="@id/login_header"
+        android:layout_marginTop="120dp" />
 
     <TextView
         android:id="@+id/login_header"
@@ -27,8 +37,8 @@
         android:text="@string/login"
         android:fontFamily="@font/chirp_heavy"
         android:textSize="30sp"
-
-        app:layout_constraintTop_toBottomOf="@id/login_logo"
+        app:layout_constraintBottom_toTopOf="@id/log_in_email_layout"
+        app:layout_constraintTop_toBottomOf="@id/Signin_header"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
 

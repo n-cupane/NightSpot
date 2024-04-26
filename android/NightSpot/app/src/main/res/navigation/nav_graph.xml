@@ -14,6 +14,9 @@
         <action
             android:id="@+id/login_to_home"
             app:destination="@id/home_fragment"/>
+        <action
+            android:id="@+id/login_to_signin"
+            app:destination="@id/registration_fragment"/>
 
     </fragment>
 
@@ -54,6 +57,10 @@
         android:label="Spot"
         tools:layout="@layout/fragment_spot">
 
+        <action
+            android:id="@+id/spotToVisited"
+            app:destination="@id/markAsVisitedFragment"/>
+
         <argument
             android:name="spot"
             app:argType="com.nighter.nightspot.models.Spot"/>
@@ -72,6 +79,33 @@
         <argument
             android:name="user"
             app:argType="com.nighter.nightspot.models.User"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/registration_fragment"
+        android:name="com.nighter.nightspot.fragments.RegistrationFragment"
+        android:label="Signup"
+        tools:layout="@layout/fragment_registration">
+
+        <action
+            android:id="@+id/signUpToLogin"
+            app:destination="@id/login_fragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/markAsVisitedFragment"
+        android:name="com.nighter.nightspot.fragments.MarkAsVisitedFragment"
+        android:label="markAsVisited"
+        tools:layout="@layout/fragment_mark_as_visited">
+
+        <action
+            android:id="@+id/vistedToSpot"
+            app:destination="@id/spot_fragment"/>
+
+        <argument
+            android:name="spot"
+            app:argType="com.nighter.nightspot.models.Spot"/>
+
     </fragment>
 
 </navigation>
