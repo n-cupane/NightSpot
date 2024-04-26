@@ -55,7 +55,7 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @GetMapping("/all/user/show-all")
+    @GetMapping("/admin/user/show-all")
     public ResponseEntity<List<UserDTO>> showAllUsers() {
         List<UserDTO> users = userService.findAll();
         return ResponseEntity.ok(users);

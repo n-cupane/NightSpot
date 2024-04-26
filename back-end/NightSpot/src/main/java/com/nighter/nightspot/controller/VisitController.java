@@ -47,7 +47,7 @@ public class VisitController {
         return ResponseEntity.ok(visit);
     }
 
-    @GetMapping("/auth/visit/show-all")
+    @GetMapping("/admin/visit/show-all")
     public ResponseEntity<List<VisitDTO>> showAllVisits() {
         List<VisitDTO> visits = visitService.findAll();
         return ResponseEntity.ok(visits);

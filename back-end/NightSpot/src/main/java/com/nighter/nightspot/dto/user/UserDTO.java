@@ -1,5 +1,7 @@
 package com.nighter.nightspot.dto.user;
 
+import com.nighter.nightspot.dto.ticket.TicketWithoutUserDTO;
+import com.nighter.nightspot.dto.visit.VisitWithoutUser;
 import com.nighter.nightspot.models.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -26,8 +28,8 @@ public class UserDTO {
     private LocalDate dateOfBirth;
     private byte[] photo;
 
-    private List<Ticket> tickets;
-    private List<Visit> visits;
+    private List<TicketWithoutUserDTO> tickets;
+    private List<VisitWithoutUser> visits;
     private List<Review> reviews;
     private List<Spot> spots; // favorites
 

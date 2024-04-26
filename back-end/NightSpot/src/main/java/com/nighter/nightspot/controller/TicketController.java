@@ -46,7 +46,7 @@ public class TicketController {
         return ResponseEntity.ok(ticket);
     }
 
-    @GetMapping("/ticket/show-all")
+    @GetMapping("/admin/ticket/show-all")
     public ResponseEntity<List<TicketDTO>> showAllTickets() {
         List<TicketDTO> tickets = ticketService.findAll();
         return ResponseEntity.ok(tickets);

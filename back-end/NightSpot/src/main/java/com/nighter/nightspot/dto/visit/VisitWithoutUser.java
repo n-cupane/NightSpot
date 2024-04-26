@@ -1,5 +1,6 @@
 package com.nighter.nightspot.dto.visit;
 
+import com.nighter.nightspot.dto.spot.SpotWithoutCategoryDTO;
 import com.nighter.nightspot.models.Spot;
 import com.nighter.nightspot.models.User;
 import jakarta.validation.constraints.NotNull;
@@ -16,7 +17,7 @@ public class VisitWithoutUser {
     @NotNull(message = "id cannot be null")
     private Long id;
     @NotNull(message = "spot cannot be null")
-    private Spot spot;
+    private SpotWithoutCategoryDTO spot;
     @PastOrPresent
     private LocalDate visitDate;
     @NotNull(message = "visit time cannot be null")

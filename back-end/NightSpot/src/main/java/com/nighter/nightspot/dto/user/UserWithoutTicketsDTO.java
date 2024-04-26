@@ -22,7 +22,7 @@ public class UserWithoutTicketsDTO {
     private LocalDate dateOfBirth;
     private byte[] photo;
 
-    private List<Visit> visits;
+//    private List<Visit> visits;
     private List<Review> reviews;
     private List<Spot> spots; // favorites
 }
