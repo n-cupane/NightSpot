@@ -50,6 +50,12 @@ public class LogInFragment extends Fragment {
         RetrofitService retrofitService = new RetrofitService();
         UserApi userApi = retrofitService.getRetrofit().create(UserApi.class);
 
+        binding.registration.setOnClickListener(v->{
+            NavController navController = Navigation.findNavController(view);
+            NavDirections toSigin= LogInFragmentDirections.loginToSignin();
+            navController.navigate(toSigin);
+        });
+
 
         binding.logIn.setOnClickListener(b -> {
 
@@ -84,6 +90,7 @@ public class LogInFragment extends Fragment {
                     });
 
         });
+
     }
 
 

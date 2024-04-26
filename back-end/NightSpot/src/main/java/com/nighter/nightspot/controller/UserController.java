@@ -39,10 +39,11 @@ public class UserController {
         }
     }
 
-    @PostMapping("/user/update")
+    @PostMapping("/auth/user/update")
     public ResponseEntity<Void> updateUser(@Valid @RequestBody UpdateUserDTO user) {
         try {
             userService.save(user);
+            System.out.println(user);
             return ResponseEntity.ok().build();
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();

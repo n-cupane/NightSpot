@@ -8,17 +8,35 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.nighter.nightspot.MainActivity;
 import com.nighter.nightspot.R;
 import com.nighter.nightspot.databinding.FragmentSpotBinding;
+import com.nighter.nightspot.models.Spot;
+import com.nighter.nightspot.models.User;
+import com.nighter.nightspot.retrofit.RetrofitService;
+import com.nighter.nightspot.retrofit.SpotApi;
+import com.nighter.nightspot.retrofit.UserApi;
+import com.nighter.nightspot.sharedpreferences.SharedPref;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import retrofit2.Call;
+import retrofit2.Response;
 
 
 public class SpotFragment extends Fragment {
 
+    private User u;
     private SpotFragmentArgs args;
     private FragmentSpotBinding binding;
 
@@ -40,6 +58,10 @@ public class SpotFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        //prelevo lo spot
+        Spot s = args.getSpot();
+        Long id = s.getId();
         final String phoneNumber = args.getSpot().getContact();
         final String message = "Salve vorrei prenotare un tavolo...";
         //binding.spotImg.setImageResource();
@@ -47,6 +69,18 @@ public class SpotFragment extends Fragment {
         binding.spotContact.setText(args.getSpot().getContact());
         binding.spotPosition.setText(args.getSpot().getPosition());
         binding.spotTimetables.setText(args.getSpot().getTimetables());
+
+
+        // Ricavo i dati dell'utente e dallo spot
+        RetrofitService retrofitService = new RetrofitService();
+        SpotApi spotApi = retrofitService.getRetrofit().create(SpotApi.class);
+        String token = SharedPref.loadToken(getContext());
+
+
+
+
+        //Prelevo l'utente dall'username
+
 
         binding.spotContact.setOnClickListener(v->{
             Intent intent = new Intent(Intent.ACTION_SEND);
@@ -64,5 +98,35 @@ public class SpotFragment extends Fragment {
             }
 
         });
+
+        // Add spot to favourites
+
+        binding.AddFavorites.setOnClickListener(v->{
+            spotApi.addSpotToFavourites(id,"Bearer "+token,"Bearer "+token).enqueue(new retrofit2.Callback<Void>(){
+
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    Toast.makeText(getContext(), "added to favourites ", Toast.LENGTH_SHORT).show();
+
+                }
+
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+                    Toast.makeText(getContext(), "added to favourites failed", Toast.LENGTH_SHORT).show();
+                    Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, "Error occured", t);
+                }
+            });
+
+
+        });
+
+        binding.setVisit.setOnClickListener(v->{
+            NavController navController = Navigation.findNavController(view);
+            NavDirections toMarkVisit = SpotFragmentDirections.spotToVisited(s);
+            navController.navigate(toMarkVisit);
+        });
+
+
+
     }
 }

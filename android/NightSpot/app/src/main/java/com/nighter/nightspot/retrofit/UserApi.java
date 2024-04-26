@@ -25,7 +25,7 @@ public interface UserApi {
     @GET("/auth/user/show/username/{username}")
     Call<User> getUserByUsername(@Path("username") String Username, @Header("Authorization") String token);
 
-    @GET("/auth/user/update")
+    @POST("/auth/user/update")
     Call<Void> updateUser(@Body User user,@Header("Authorization") String token);
 
 }

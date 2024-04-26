@@ -69,14 +69,17 @@ public class UserServiceJPA implements UserService {
     public void save(UpdateUserDTO user) {
         Optional<User> u = repo.findById(user.getId());
         User userGet = u.get();
-        if(user.getPhoto()==null) {
-            user.setPhoto(userGet.getPhoto());
-        }
-        if(user.getPhoto()==null) {
-            user.setInstagramHandle(userGet.getInstagramHandle());
-        }
+        userGet.setEmail(user.getEmail());
+        userGet.setUsername(user.getUsername());
+        userGet.setFirstName(user.getFirstName());
+        userGet.setLastName(user.getLastName());
+        userGet.setInstagramHandle(user.getInstagramHandle());
+        userGet.setPassword(user.getPassword());
+        userGet.setDateOfBirth(user.getDateOfBirth());
+        userGet.setPhoto(user.getPhoto());
+        System.out.println(userGet);
         repo.save(
-                mapper.fromUpdateUserDTO(user)
+                userGet
         );
     }
 

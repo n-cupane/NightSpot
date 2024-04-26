@@ -9,6 +9,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,6 +66,9 @@ public class ModifyFragment extends Fragment {
             user.setEmail(email);
             user.setInstagramHandle(instagram);
             String token = SharedPref.loadToken(getContext());
+
+            System.out.println(user);
+
             userApi.updateUser(user,"Bearer "+token).enqueue(new retrofit2.Callback<Void>(){
 
                 @Override
