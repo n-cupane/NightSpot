@@ -121,6 +121,7 @@ public class SpotFragment extends Fragment {
         });
 
         binding.setVisit.setOnClickListener(v->{
+            System.out.println(s);
             NavController navController = Navigation.findNavController(view);
             NavDirections toMarkVisit = SpotFragmentDirections.spotToVisited(s);
             navController.navigate(toMarkVisit);

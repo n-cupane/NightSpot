@@ -57,7 +57,7 @@ public class SpotController {
 
     }
 
-    @GetMapping("/admin/spot/findAllWithCategory")
+    @GetMapping("/auth/spot/findAllWithCategory")
     public ResponseEntity<List<SpotWithCategoryDTO>> findAllWithCategory() throws NoResultException {
         List<SpotWithCategoryDTO> s = spotService.findAllWithCategory();
         return ResponseEntity.ok(s);

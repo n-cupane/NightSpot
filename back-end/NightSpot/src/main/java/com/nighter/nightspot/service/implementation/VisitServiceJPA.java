@@ -5,12 +5,14 @@ import com.nighter.nightspot.dto.visit.UpdateVisitDTO;
 import com.nighter.nightspot.dto.visit.VisitDTO;
 import com.nighter.nightspot.error.exception.NoResultException;
 import com.nighter.nightspot.mapper.VisitMapper;
+import com.nighter.nightspot.models.Visit;
 import com.nighter.nightspot.repository.VisitRepositoryJPA;
 import com.nighter.nightspot.service.definition.VisitService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -73,4 +75,16 @@ public class VisitServiceJPA implements VisitService {
     public void deleteByIds(Long uId, Long sId) throws NoResultException {
         repo.deleteByIds(uId, sId);
     }
+
+    @Override
+    public List<VisitDTO> findVisitByUserId(Long userId) {
+        return repo.selectVisitFromUserId(userId).stream().map(t->mapper.toVisitDTO(t)).toList();
+    }
+
+    @Override
+    public List<VisitDTO> selectVisitFromTime(Long sId, LocalTime visitTIme) {
+        return repo.selectVisitFromTime(sId, visitTIme).stream().map(t->mapper.toVisitDTO(t)).toList();
+    }
+
+
 }

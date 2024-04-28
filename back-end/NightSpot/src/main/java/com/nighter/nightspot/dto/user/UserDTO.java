@@ -1,5 +1,6 @@
 package com.nighter.nightspot.dto.user;
 
+import com.nighter.nightspot.dto.spot.SpotWithCategoryDTO;
 import com.nighter.nightspot.dto.ticket.TicketWithoutUserDTO;
 import com.nighter.nightspot.dto.visit.VisitWithoutUser;
 import com.nighter.nightspot.models.*;
@@ -31,7 +32,7 @@ public class UserDTO {
     private List<TicketWithoutUserDTO> tickets;
     private List<VisitWithoutUser> visits;
     private List<Review> reviews;
-    private List<Spot> spots; // favorites
+    private List<SpotWithCategoryDTO> spots; // favorites
 
     private Role role;
 }

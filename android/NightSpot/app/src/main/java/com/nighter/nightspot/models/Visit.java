@@ -9,7 +9,7 @@ import java.time.LocalTime;
 
 public class Visit implements Serializable {
 
-    private VisitKey id = new VisitKey();
+    private Long id;
 
     private User user;
 
@@ -19,11 +19,11 @@ public class Visit implements Serializable {
 
     private LocalTime visitTime;
 
-    public VisitKey getId() {
-        return id;
+    public Long getId() {
+        return this.id;
     }
 
-    public void setId(VisitKey id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

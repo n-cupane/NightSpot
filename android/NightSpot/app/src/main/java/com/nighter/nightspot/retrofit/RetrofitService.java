@@ -13,6 +13,7 @@ import com.google.gson.JsonSerializer;
 
 import java.lang.reflect.Type;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 import retrofit2.Retrofit;
@@ -32,6 +33,7 @@ public class RetrofitService {
         public LocalDate deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
             return LocalDate.parse(json.getAsJsonPrimitive().getAsString());
         }
+
     }).registerTypeAdapter(LocalDate.class, new JsonSerializer<LocalDate>() {
 
         @Override
@@ -40,7 +42,22 @@ public class RetrofitService {
             j.addProperty("dateOfBirth", src.getYear() + "-" + src.getMonthValue() + "-" + src.getDayOfMonth());
             return new JsonPrimitive(src.format(DateTimeFormatter.ISO_LOCAL_DATE));
         }
-    }).create();
+    }).registerTypeAdapter(LocalTime.class, new JsonDeserializer<LocalTime>() {
+
+        @Override
+        public LocalTime deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+            return LocalTime.parse(json.getAsJsonPrimitive().getAsString());
+        }
+
+    }).registerTypeAdapter(LocalTime.class, new JsonSerializer<LocalTime>() {
+                @Override
+                public JsonElement serialize(LocalTime src, Type typeOfSrc, JsonSerializationContext context) {
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+                    return new JsonPrimitive(src.format(formatter));
+                }
+            })
+            .create();
+
 
     private void initializeRetrofit() {
         retrofit = new Retrofit.Builder()

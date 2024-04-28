@@ -43,6 +43,12 @@
         <action
             android:id="@+id/user_to_modify"
             app:destination="@id/modify_fragment"/>
+        <action
+            android:id="@+id/user_to_my_spots"
+            app:destination="@id/MySpotsFragment"/>
+        <action
+            android:id="@+id/user_to_my_visits"
+            app:destination="@id/MyVisitsFragment"/>
         <argument
             android:name="user"
             app:argType="com.nighter.nightspot.models.User"/>
@@ -64,6 +70,17 @@
         <argument
             android:name="spot"
             app:argType="com.nighter.nightspot.models.Spot"/>
+    </fragment>
+    <fragment
+        android:id="@+id/markAsVisitedFragment"
+        android:name="com.nighter.nightspot.fragments.MarkAsVisitedFragment"
+        android:label="markAsVisited"
+        tools:layout="@layout/fragment_mark_as_visited">
+
+        <argument
+            android:name="spot"
+            app:argType="com.nighter.nightspot.models.Spot"/>
+
     </fragment>
 
     <fragment
@@ -93,19 +110,43 @@
     </fragment>
 
     <fragment
-        android:id="@+id/markAsVisitedFragment"
-        android:name="com.nighter.nightspot.fragments.MarkAsVisitedFragment"
-        android:label="markAsVisited"
-        tools:layout="@layout/fragment_mark_as_visited">
-
+        android:id="@+id/MySpotsFragment"
+        android:name="com.nighter.nightspot.fragments.MySpotsFragment"
+        android:label="MySpots"
+        tools:layout="@layout/fragment_my_spots">
         <action
-            android:id="@+id/vistedToSpot"
+            android:id="@+id/myspots_to_spot"
             app:destination="@id/spot_fragment"/>
 
+    </fragment>
+    <fragment
+        android:id="@+id/VisitUsersFragment"
+        android:name="com.nighter.nightspot.fragments.VisitUsersFragment"
+        android:label="MyVisitUsers"
+        tools:layout="@layout/fragment_visit_users">
+
         <argument
-            android:name="spot"
-            app:argType="com.nighter.nightspot.models.Spot"/>
+            android:name="visit"
+            app:argType="com.nighter.nightspot.models.Visit"/>
+
 
     </fragment>
+
+    <fragment
+    android:id="@+id/MyVisitsFragment"
+    android:name="com.nighter.nightspot.fragments.MyVisitsFragment"
+    android:label="MyVisit"
+    tools:layout="@layout/fragment_my_visits">
+
+    <action
+        android:id="@+id/my_visits_to_users"
+        app:destination="@id/VisitUsersFragment"/>
+
+
+</fragment>
+
+
+
+
 
 </navigation>

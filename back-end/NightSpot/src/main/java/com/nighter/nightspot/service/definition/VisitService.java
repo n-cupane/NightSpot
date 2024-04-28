@@ -4,7 +4,9 @@ import com.nighter.nightspot.dto.visit.InsertVisitDTO;
 import com.nighter.nightspot.dto.visit.UpdateVisitDTO;
 import com.nighter.nightspot.dto.visit.VisitDTO;
 import com.nighter.nightspot.error.exception.NoResultException;
+import com.nighter.nightspot.models.Visit;
 
+import java.time.LocalTime;
 import java.util.List;
 
 public interface VisitService {
@@ -22,5 +24,9 @@ public interface VisitService {
     VisitDTO findByIds(Long uId, Long sId) throws NoResultException;
 
     void deleteByIds(Long uId, Long sId) throws NoResultException;
+
+    List<VisitDTO> findVisitByUserId(Long UserId);
+
+    List<VisitDTO> selectVisitFromTime(Long sId, LocalTime visitTIme);
 
 }

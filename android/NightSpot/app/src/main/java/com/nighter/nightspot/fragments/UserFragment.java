@@ -51,5 +51,17 @@ public class UserFragment extends Fragment {
             navController.navigate(toModify);
         });
 
+        binding.MySpots.setOnClickListener(v->{
+            NavController navController = Navigation.findNavController(view);
+            NavDirections toMySpots = UserFragmentDirections.userToMySpots();
+            navController.navigate(toMySpots);
+        });
+
+        binding.VisitedSpots.setOnClickListener(v->{
+            NavController navController = Navigation.findNavController(view);
+            NavDirections toMyVisits = UserFragmentDirections.userToMyVisits();
+            navController.navigate(toMyVisits);
+        });
+
     }
 }

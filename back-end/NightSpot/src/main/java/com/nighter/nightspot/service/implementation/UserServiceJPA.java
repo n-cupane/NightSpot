@@ -120,7 +120,7 @@ public class UserServiceJPA implements UserService {
     @Override
     public void addFavorite(SpotWithCategoryDTO spot, UserDTO user) {
         Spot spot1 = spotMapper.fromSpotWithCategoryDTO(spot);
-        user.getSpots().add(spot1);
+        user.getSpots().add(spot);
         User u = mapper.fromUserDTO(user);
         repo.save(u);
     }

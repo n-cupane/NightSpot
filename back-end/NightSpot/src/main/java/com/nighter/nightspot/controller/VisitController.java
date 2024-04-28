@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalTime;
 import java.util.List;
 
 @RestController
@@ -58,5 +59,19 @@ public class VisitController {
         visitService.deleteById(id);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/auth/visit/findByUserId/{userId}")
+    public ResponseEntity<List<VisitDTO>> selectVisitFromUserId(@PathVariable Long userId) {
+     List<VisitDTO> visits = visitService.findVisitByUserId(userId);
+     return ResponseEntity.ok(visits);
+    }
+
+    @GetMapping("/auth/visit/findVisitFromSpotIDandTime/")
+    public ResponseEntity<List<VisitDTO>> selectVisitFromTime(@RequestParam("sId") Long sId, @RequestParam("visitTime") LocalTime visitTime) {
+        List<VisitDTO> visitDTOS = visitService.selectVisitFromTime(sId, visitTime);
+        System.out.println(visitDTOS);
+        return ResponseEntity.ok(visitDTOS);
+    }
+
 
 }
