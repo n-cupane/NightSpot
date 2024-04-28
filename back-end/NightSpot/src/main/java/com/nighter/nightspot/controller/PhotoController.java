@@ -6,9 +6,13 @@ import com.nighter.nightspot.dto.photo.UpdatePhotoDTO;
 import com.nighter.nightspot.error.exception.NoResultException;
 import com.nighter.nightspot.service.definition.PhotoService;
 import jakarta.validation.Valid;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -19,10 +23,10 @@ public class PhotoController {
     @Autowired
     private PhotoService photoService;
 
-    @PostMapping("/photo/insert")
-    public ResponseEntity<Void> insertPhoto(@Valid @RequestBody InsertPhotoDTO photo) {
+    @PostMapping("/admin/photo/upload/{spotId}")
+    public ResponseEntity<Void> uploadPhoto(@RequestParam("image") MultipartFile file, @PathVariable Long spotId) {
         try {
-            photoService.save(photo);
+            photoService.save(file, spotId);
             return ResponseEntity.ok().build();
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
@@ -39,10 +43,13 @@ public class PhotoController {
         }
     }
 
-    @GetMapping("/photo/show/id/{id}")
-    public ResponseEntity<PhotoDTO> showPhoto(@PathVariable Long id) throws NoResultException {
-        PhotoDTO photo = photoService.findById(id);
-        return ResponseEntity.ok(photo);
+    @GetMapping("/auth/photo/show/id/{id}")
+    public ResponseEntity<?> showPhoto(@PathVariable Long id) throws NoResultException {
+        byte[] photo = photoService.findById(id);
+        photo = Base64.encodeBase64(photo, true);
+        return ResponseEntity.status(HttpStatus.OK)
+                .contentType(MediaType.valueOf("image/png"))
+                .body(photo);
     }
 
     @GetMapping("/photo/show-all")

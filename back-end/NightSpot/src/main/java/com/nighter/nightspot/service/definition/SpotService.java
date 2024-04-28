@@ -27,5 +27,7 @@ public interface SpotService {
 
     void deleteById(Long aLong) throws NoResultException;
 
+    SpotWithoutCategoryDTO findByName(String name) throws NoResultException;
+
 
 }

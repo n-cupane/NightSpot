@@ -23,4 +23,6 @@ public interface CategoryService {
 
     void deleteById(Long aLong) throws NoResultException;
 
+    CategoryWithoutSpotsDTO findByName(String name) throws NoResultException;
+
 }

@@ -5,16 +5,17 @@ import com.nighter.nightspot.dto.photo.PhotoDTO;
 import com.nighter.nightspot.dto.photo.PhotoWithoutSpot;
 import com.nighter.nightspot.dto.photo.UpdatePhotoDTO;
 import com.nighter.nightspot.error.exception.NoResultException;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 public interface PhotoService {
 
-    PhotoDTO findById(Long id) throws NoResultException;
+    byte[] findById(Long id) throws NoResultException;
 
     List<PhotoDTO> findAll();
 
-    void save(InsertPhotoDTO photo);
+    void save(MultipartFile file, Long spotId) throws Exception;
 
     void save(UpdatePhotoDTO photo);
 

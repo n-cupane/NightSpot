@@ -59,4 +59,12 @@ public class SpotServiceJPA implements SpotService {
     public void deleteById(Long aLong) throws NoResultException {
         repository.deleteById(aLong);
     }
+
+    @Override
+    public SpotWithoutCategoryDTO findByName(String name) throws NoResultException {
+        return spotMapper.toSpotDTOWithoutCategory(
+                repository.findByName(name)
+                        .orElseThrow(() -> new NoResultException("Spot with name " + name + " not found"))
+        );
+    }
 }

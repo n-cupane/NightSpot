@@ -124,4 +124,16 @@ public class UserServiceJPA implements UserService {
         User u = mapper.fromUserDTO(user);
         repo.save(u);
     }
+
+    @Override
+    public List<UserDTO> findAllAdmins() {
+        return repo.findAllAdmins().stream()
+                .map(mapper::toUserDTO)
+                .toList();
+    }
+
+    @Override
+    public void updateRole(Long id, Role role) throws NoResultException {
+        repo.updateRole(id, role);
+    }
 }

@@ -21,7 +21,7 @@ public class SpotController {
     @Autowired
     private SpotService spotService;
 
-    @PostMapping("/all/spot/insert")
+    @PostMapping("/admin/spot/insert")
     public ResponseEntity<Void> insert(@Valid @RequestBody InsertSpotDTO insertSpotDTO) {
         try {
             spotService.insert(insertSpotDTO);
@@ -75,5 +75,10 @@ public class SpotController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/auth/spot/findByName/{name}")
+    public ResponseEntity<SpotWithoutCategoryDTO> findByName(@PathVariable String name) throws NoResultException {
+        SpotWithoutCategoryDTO s = spotService.findByName(name);
+        return ResponseEntity.ok(s);
+    }
 
 }

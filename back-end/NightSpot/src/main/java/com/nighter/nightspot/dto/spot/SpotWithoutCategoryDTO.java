@@ -1,5 +1,6 @@
 package com.nighter.nightspot.dto.spot;
 
+import com.nighter.nightspot.dto.photo.PhotoWithoutSpot;
 import com.nighter.nightspot.models.Photo;
 import jakarta.validation.constraints.NotBlank;
 
@@ -25,6 +26,6 @@ public class SpotWithoutCategoryDTO {
     @NotBlank(message = "Timetables cannot be blank")
     private  String timetables;
 
-    private List<Photo> photos;
+    private List<PhotoWithoutSpot> photos;
 
 }

@@ -5,6 +5,7 @@ import com.nighter.nightspot.dto.user.InsertUserDTO;
 import com.nighter.nightspot.dto.user.UpdateUserDTO;
 import com.nighter.nightspot.dto.user.UserDTO;
 import com.nighter.nightspot.error.exception.NoResultException;
+import com.nighter.nightspot.models.Role;
 import com.nighter.nightspot.models.Spot;
 import com.nighter.nightspot.models.User;
 import com.nighter.nightspot.service.definition.SpotService;
@@ -95,6 +96,19 @@ public class UserController {
         UserDTO user = userService.findByUsername(userDetails.getUsername());
         SpotWithCategoryDTO spot = spotService.findByIdWithCategory(spotId);
         userService.addFavorite(spot, user);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/admin/user/show-admins")
+    public ResponseEntity<List<UserDTO>> showAdmins() {
+        List<UserDTO> users = userService.findAllAdmins();
+        return ResponseEntity.ok(users);
+    }
+
+    @PostMapping("/super/user/role/{id}/{role}")
+    public ResponseEntity<Void> updateRole(@PathVariable Long id, @PathVariable int role) throws NoResultException {
+        Role roleAsEnum = (role == 1) ? Role.ADMIN : Role.BASE;
+        userService.updateRole(id, roleAsEnum);
         return ResponseEntity.ok().build();
     }
 

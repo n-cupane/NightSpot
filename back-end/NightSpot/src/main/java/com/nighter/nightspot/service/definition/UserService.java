@@ -5,6 +5,7 @@ import com.nighter.nightspot.dto.user.InsertUserDTO;
 import com.nighter.nightspot.dto.user.UpdateUserDTO;
 import com.nighter.nightspot.dto.user.UserDTO;
 import com.nighter.nightspot.error.exception.NoResultException;
+import com.nighter.nightspot.models.Role;
 import com.nighter.nightspot.models.Spot;
 import com.nighter.nightspot.models.User;
 
@@ -29,5 +30,9 @@ public interface UserService {
     String login(String username, String password) throws Exception;
 
     void addFavorite(SpotWithCategoryDTO spot, UserDTO user);
+
+    List<UserDTO> findAllAdmins();
+
+    void updateRole(Long id, Role role) throws NoResultException;
 
 }

@@ -25,7 +25,7 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @PostMapping("/all/category/insert")
+    @PostMapping("/admin/category/insert")
     public ResponseEntity<Void> insert(@Valid @RequestBody InsertCategoryDTO insertCategoryDTO) {
         try {
             categoryService.insert(insertCategoryDTO);
@@ -73,11 +73,16 @@ public class CategoryController {
         return ResponseEntity.ok(c);
     }
 
-    @GetMapping("/category/findAllWithoutCategory")
+    @GetMapping("/admin/category/findAllWithoutSpots")
     public ResponseEntity<List<CategoryWithoutSpotsDTO>> findAllWithoutSpots() throws NoResultException {
         List<CategoryWithoutSpotsDTO> c = categoryService.findAllWithoutSpots();
         return ResponseEntity.ok(c);
     }
 
+    @GetMapping("/admin/category/findByName/{name}")
+    public ResponseEntity<CategoryWithoutSpotsDTO> findByName(@PathVariable String name) throws NoResultException {
+        CategoryWithoutSpotsDTO c = categoryService.findByName(name);
+        return ResponseEntity.ok(c);
+    }
 
 }

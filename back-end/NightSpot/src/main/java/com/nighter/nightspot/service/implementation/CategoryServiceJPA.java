@@ -70,4 +70,13 @@ public class CategoryServiceJPA implements CategoryService {
     public void deleteById(Long aLong) throws NoResultException {
         categoryRepositoryJPA.deleteById(aLong);
     }
+
+    @Override
+    public CategoryWithoutSpotsDTO findByName(String name) throws NoResultException {
+        return categoryMapper.toCategoryDTOWithoutSpots(categoryRepositoryJPA.findByName(name)
+                .orElseThrow(
+                        () -> new NoResultException("Category " + name + "not found")
+                )
+        );
+    }
 }
