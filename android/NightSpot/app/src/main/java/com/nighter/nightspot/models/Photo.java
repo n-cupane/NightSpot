@@ -11,7 +11,7 @@ public class Photo implements Serializable {
 
     private Long id;
 
-    private String photo;
+    private String path;
 
     private Spot spot;
 
@@ -23,12 +23,12 @@ public class Photo implements Serializable {
         this.id = id;
     }
 
-    public  String getPhoto() {
-        return photo;
+    public  String getPath() {
+        return path;
     }
 
-    public void setPhoto( String photo) {
-        this.photo = photo;
+    public void setPath( String path) {
+        this.path = path;
     }
 
     public Spot getSpot() {
@@ -43,7 +43,7 @@ public class Photo implements Serializable {
     public String toString() {
         return "Photo{" +
                 "id=" + id +
-                ", photo=" + photo +
+                ", photo=" + path +
                 ", spot=" + spot +
                 '}';
     }

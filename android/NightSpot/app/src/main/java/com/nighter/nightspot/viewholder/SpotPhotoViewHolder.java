@@ -28,7 +28,7 @@ public class SpotPhotoViewHolder extends RecyclerView.ViewHolder {
     public void setImg(Photo spotImgString) {
         this.spotImgString = spotImgString;
         Picasso.get()
-                .load(spotImgString.getPhoto())
+                .load("http://192.168.1.62:8080/"+spotImgString.getPath())
                 .into(spotImgRow);;
     }
 
