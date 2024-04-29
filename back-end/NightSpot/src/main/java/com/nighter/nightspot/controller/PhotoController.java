@@ -46,7 +46,7 @@ public class PhotoController {
     @GetMapping("/auth/photo/show/id/{id}")
     public ResponseEntity<?> showPhoto(@PathVariable Long id) throws NoResultException {
         byte[] photo = photoService.findById(id);
-        photo = Base64.encodeBase64(photo, true);
+//        photo = Base64.encodeBase64(photo, true);
         return ResponseEntity.status(HttpStatus.OK)
                 .contentType(MediaType.valueOf("image/png"))
                 .body(photo);

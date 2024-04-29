@@ -11,5 +11,5 @@ public class PhotoWithoutSpot {
     @NotNull(message = "id cannot be null")
     private Long id;
 
-    private byte[] photo;
+    private String path;
 }
