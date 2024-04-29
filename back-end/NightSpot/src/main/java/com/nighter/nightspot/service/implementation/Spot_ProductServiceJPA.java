@@ -46,4 +46,9 @@ public class Spot_ProductServiceJPA implements Spot_ProductService {
     public void deleteById(Long aLong) throws NoResultException {
         spotProductRepositoryJPA.deleteById(aLong);
     }
+
+    @Override
+    public List<SpotProductDTO> findBySpotI(Long id) throws NoResultException {
+        return spotProductRepositoryJPA.findBySpotId(id).stream().map(t-> spotProductMapper.toSpotProductDTO(t)).toList();
+    }
 }

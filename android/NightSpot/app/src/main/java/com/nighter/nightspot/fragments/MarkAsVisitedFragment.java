@@ -41,11 +41,11 @@ import retrofit2.Response;
 public class MarkAsVisitedFragment extends Fragment {
 
 
-    FragmentMarkAsVisitedBinding binding;
+    private FragmentMarkAsVisitedBinding binding;
 
-    MarkAsVisitedFragmentArgs args;
+    private MarkAsVisitedFragmentArgs args;
 
-    User u = new User();
+    private User u = new User();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

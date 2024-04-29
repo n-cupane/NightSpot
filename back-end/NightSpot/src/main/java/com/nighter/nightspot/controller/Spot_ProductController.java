@@ -57,4 +57,10 @@ public class Spot_ProductController {
         spotProductService.deleteById(id);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/all/spot_product/findBySpotId/{id}")
+    public ResponseEntity<List<SpotProductDTO>> findBySpotId(@PathVariable Long spotId) throws NoResultException {
+        List<SpotProductDTO>sList = spotProductService.findBySpotI(spotId);
+        return ResponseEntity.ok(sList);
+    }
 }

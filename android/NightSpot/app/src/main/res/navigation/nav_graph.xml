@@ -67,6 +67,10 @@
             android:id="@+id/spotToVisited"
             app:destination="@id/markAsVisitedFragment"/>
 
+        <action
+            android:id="@+id/spotToMenu"
+            app:destination="@id/menuFragment"/>
+
         <argument
             android:name="spot"
             app:argType="com.nighter.nightspot.models.Spot"/>
@@ -144,6 +148,18 @@
 
 
 </fragment>
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.nighter.nightspot.fragments.MenuFragment"
+        android:label="SpotMenu"
+        tools:layout="@layout/fragment_menu">
+
+        <argument
+            android:name="spot"
+            app:argType="com.nighter.nightspot.models.Spot"/>
+
+
+    </fragment>
 
 
 

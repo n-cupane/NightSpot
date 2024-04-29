@@ -20,4 +20,6 @@ public interface Spot_ProductService {
 
     void deleteById(Long aLong) throws NoResultException;
 
+    List<SpotProductDTO> findBySpotI(Long id) throws NoResultException;
+
 }

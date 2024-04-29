@@ -115,6 +115,12 @@ public class SpotFragment extends Fragment {
         binding.spotImg.setAdapter(adapter);
         binding.spotImg.setLayoutManager(gridLayoutManager);
 
+        binding.spotMenu.setOnClickListener(v->{
+            NavController navController = Navigation.findNavController(view);
+            NavDirections toMarkVisit = SpotFragmentDirections.spotToMenu(s);
+            navController.navigate(toMarkVisit);
+        });
+
 
 
 
