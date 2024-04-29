@@ -43,14 +43,14 @@ public class PhotoController {
         }
     }
 
-    @GetMapping("/auth/photo/show/id/{id}")
-    public ResponseEntity<?> showPhoto(@PathVariable Long id) throws NoResultException {
+    @GetMapping("/all/photo/show/id/{id}")
+    public ResponseEntity<byte[]> showPhoto(@PathVariable Long id) throws NoResultException {
         byte[] photo = photoService.findById(id);
-        photo = Base64.encodeBase64(photo, true);
-        return ResponseEntity.status(HttpStatus.OK)
-                .contentType(MediaType.valueOf("image/png"))
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
                 .body(photo);
     }
+
 
     @GetMapping("/photo/show-all")
     public ResponseEntity<List<PhotoDTO>> showAllPhotos() {

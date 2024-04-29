@@ -1,6 +1,8 @@
 package com.nighter.nightspot.models;
 
 
+import android.graphics.Bitmap;
+
 import java.io.Serializable;
 import java.util.Arrays;
 
@@ -9,7 +11,7 @@ public class Photo implements Serializable {
 
     private Long id;
 
-    private byte[] photo;
+    private String photo;
 
     private Spot spot;
 
@@ -21,11 +23,11 @@ public class Photo implements Serializable {
         this.id = id;
     }
 
-    public byte[] getPhoto() {
+    public  String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(byte[] photo) {
+    public void setPhoto( String photo) {
         this.photo = photo;
     }
 
@@ -41,7 +43,7 @@ public class Photo implements Serializable {
     public String toString() {
         return "Photo{" +
                 "id=" + id +
-                ", photo=" + Arrays.toString(photo) +
+                ", photo=" + photo +
                 ", spot=" + spot +
                 '}';
     }

@@ -20,5 +20,8 @@ public interface SpotApi {
     @POST("auth/user/add-favorite/{spotId}")
     Call<Void> addSpotToFavourites(@Path("spotId") Long spotId,@Header("Authorization") String token,@Body String userToken);
 
+    @GET("/auth/photo/show/id/{id}")
+    Call<byte[]> showPhoto(@Header("Authorization") String token, @Path("id") Long id);
+
 }
 

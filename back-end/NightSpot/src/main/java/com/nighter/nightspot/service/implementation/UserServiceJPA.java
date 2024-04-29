@@ -69,6 +69,7 @@ public class UserServiceJPA implements UserService {
     public void save(UpdateUserDTO user) {
         Optional<User> u = repo.findById(user.getId());
         User userGet = u.get();
+        System.out.println(userGet);
         userGet.setEmail(user.getEmail());
         userGet.setUsername(user.getUsername());
         userGet.setFirstName(user.getFirstName());

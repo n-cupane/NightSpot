@@ -73,6 +73,7 @@ public class ModifyFragment extends Fragment {
 
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {
+                    System.out.println(response.code());
                     NavController navController = Navigation.findNavController(view);
                     NavDirections toUser = ModifyFragmentDirections.modifyToUser(user);
                     navController.navigate(toUser);

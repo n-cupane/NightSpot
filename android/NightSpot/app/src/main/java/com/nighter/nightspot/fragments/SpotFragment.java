@@ -2,6 +2,8 @@ package com.nighter.nightspot.fragments;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -11,15 +13,25 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.os.Environment;
+import android.util.Base64;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.nighter.nightspot.MainActivity;
 import com.nighter.nightspot.R;
+import com.nighter.nightspot.adapter.SpotAdapter;
+import com.nighter.nightspot.adapter.SpotPhotoAdapter;
 import com.nighter.nightspot.databinding.FragmentSpotBinding;
+import com.nighter.nightspot.models.Photo;
 import com.nighter.nightspot.models.Spot;
 import com.nighter.nightspot.models.User;
 import com.nighter.nightspot.retrofit.RetrofitService;
@@ -27,11 +39,16 @@ import com.nighter.nightspot.retrofit.SpotApi;
 import com.nighter.nightspot.retrofit.UserApi;
 import com.nighter.nightspot.sharedpreferences.SharedPref;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import retrofit2.Call;
 import retrofit2.Response;
+import com.squareup.picasso.Picasso;
+
 
 
 public class SpotFragment extends Fragment {
@@ -39,6 +56,8 @@ public class SpotFragment extends Fragment {
     private User u;
     private SpotFragmentArgs args;
     private FragmentSpotBinding binding;
+
+    private byte[] imageBytes;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,6 +83,12 @@ public class SpotFragment extends Fragment {
         Long id = s.getId();
         final String phoneNumber = args.getSpot().getContact();
         final String message = "Salve vorrei prenotare un tavolo...";
+
+        //Setto l'immagine
+
+
+
+
         //binding.spotImg.setImageResource();
         binding.spotName.setText(args.getSpot().getName());
         binding.spotContact.setText(args.getSpot().getContact());
@@ -75,6 +100,21 @@ public class SpotFragment extends Fragment {
         RetrofitService retrofitService = new RetrofitService();
         SpotApi spotApi = retrofitService.getRetrofit().create(SpotApi.class);
         String token = SharedPref.loadToken(getContext());
+
+        /*Picasso.get()
+                .load("http://192.168.1.62:8080/all/photo/show/id/3")
+                .into(binding.spotImg);*/
+
+
+        //setto le immagini
+        List<Photo> spotImgs = s.getPhotos();
+        SpotPhotoAdapter adapter = new SpotPhotoAdapter(spotImgs);
+        LinearLayoutManager gridLayoutManager = new LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false);
+
+
+        binding.spotImg.setAdapter(adapter);
+        binding.spotImg.setLayoutManager(gridLayoutManager);
+
 
 
 

@@ -58,6 +58,8 @@ public class RetrofitService {
             })
             .create();
 
+    //.setLenient()
+
 
     private void initializeRetrofit() {
         retrofit = new Retrofit.Builder()
