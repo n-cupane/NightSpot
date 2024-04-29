@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 public class InsertPhotoDTO {
 
-    private byte[] photo;
+    private String path;
 
     @NotNull(message = "spot cannot be null")
     private Spot spot;

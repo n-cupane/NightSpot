@@ -12,7 +12,7 @@ public class UpdatePhotoDTO {
     @NotNull(message = "id cannot be null")
     private Long id;
 
-    private byte[] photo;
+    private String path;
 
     @NotNull(message = "spot cannot be null")
     private Spot spot;

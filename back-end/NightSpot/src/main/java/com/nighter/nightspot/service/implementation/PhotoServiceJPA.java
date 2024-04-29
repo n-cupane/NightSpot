@@ -16,13 +16,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class PhotoServiceJPA implements PhotoService {
+
+    private static final String imagesFolder = "src/main/resources/static/images";
 
     @Autowired
     private PhotoRepositoryJPA repo;
@@ -34,9 +36,10 @@ public class PhotoServiceJPA implements PhotoService {
 
     @Override
     public byte[] findById(Long id) throws NoResultException {
-        Optional<Photo> dbPhoto = repo.findById(id);
-        byte[] photo = ImageUtil.decompressImage(dbPhoto.get().getPhoto());
-        return photo;
+//        Optional<Photo> dbPhoto = repo.findById(id);
+//        byte[] photo = ImageUtil.decompressImage(dbPhoto.get().getPhoto());
+//        return photo;
+        return null;
     }
 
     @Override
@@ -49,10 +52,36 @@ public class PhotoServiceJPA implements PhotoService {
     @Override
     public void save(MultipartFile file, Long spotId) throws IOException {
 
+        InputStream is = null;
+        OutputStream os = null;
+        String fileName = file.getOriginalFilename();
+        File newFile = new File(imagesFolder + File.separator + fileName);
+
+        try {
+            is = file.getInputStream();
+
+            if (!newFile.exists()) {
+                newFile.createNewFile();
+            }
+
+            os = new FileOutputStream(newFile);
+            int read = 0;
+            byte[] bytes = new byte[1024];
+
+            while ((read = is.read(bytes)) != -1) {
+                os.write(bytes, 0, read);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         Photo photo = new Photo();
-        photo.setPhoto(
-                ImageUtil.compressImage(file.getBytes())
-        );
+//        photo.setPath(newFile.getAbsolutePath());
+        photo.setPath("images/" + fileName);
+        System.out.println("images/" + fileName);
+//        photo.setPhoto(
+//                ImageUtil.compressImage(file.getBytes())
+//        );
         photo.setSpot(spotRepo.findById(spotId).get());
         repo.save(
                 photo
@@ -64,13 +93,14 @@ public class PhotoServiceJPA implements PhotoService {
 
     @Override
     public void save(UpdatePhotoDTO photo) {
-        Photo p = repo.getById(photo.getId());
-        if(photo.getPhoto()==null) {
-            photo.setPhoto(p.getPhoto());
-        }
-        repo.save(
-                mapper.fromUpdatePhotoDTO(photo)
-        );
+//        Photo p = repo.getById(photo.getId());
+//        if(photo.getPhoto()==null) {
+//            photo.setPhoto(p.getPhoto());
+//        }
+//        repo.save(
+//                mapper.fromUpdatePhotoDTO(photo)
+//        );
+        return;
     }
 
     @Override

@@ -9,6 +9,6 @@ import lombok.Setter;
 @Setter
 public class PhotoDTO {
     private Long id;
-    private byte[] photo;
+    private String path;
     private Spot spot;
 }

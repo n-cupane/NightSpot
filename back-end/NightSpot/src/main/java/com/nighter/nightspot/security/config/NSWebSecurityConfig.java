@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -34,6 +35,7 @@ public class NSWebSecurityConfig {
                     t.requestMatchers("/admin/**").hasAnyRole(Role.ADMIN.getName(), Role.SUPER_ADMIN.getName());
                     t.requestMatchers("/auth/**").authenticated();
                     t.requestMatchers("/all/**").permitAll();
+                    t.requestMatchers("/images/**").permitAll();
                 })
                 .csrf(t -> t.disable())
                 .sessionManagement(t -> t.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -41,5 +43,10 @@ public class NSWebSecurityConfig {
         return http.build();
 
     }
+
+//    @Bean
+//    public WebSecurityCustomizer webSecurityCustomizer() {
+//        return t-> t.ignoring().requestMatchers("/images/**");
+//    }
 
 }

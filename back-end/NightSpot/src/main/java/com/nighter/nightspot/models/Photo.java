@@ -13,9 +13,10 @@ public class Photo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Lob
-    @Column(columnDefinition = "MEDIUMBLOB")
-    private byte[] photo;
+//    @Lob
+//    @Column(columnDefinition = "MEDIUMBLOB")
+    @Column(nullable = false)
+    private String path;
 
     @ManyToOne
     private Spot spot;
