@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 public class UpdateSpotDTO {
 
-    @NotBlank(message = "Id cannot be blank")
+    @NotNull(message = "Id cannot be null")
     private Long id;
 
     @NotBlank(message = "Name cannot be blank")

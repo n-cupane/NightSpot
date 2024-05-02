@@ -6,7 +6,9 @@ import com.nighter.nightspot.dto.spot.SpotWithCategoryDTO;
 import com.nighter.nightspot.dto.spot.SpotWithoutCategoryDTO;
 import com.nighter.nightspot.dto.spot.UpdateSpotDTO;
 import com.nighter.nightspot.error.exception.NoResultException;
+import com.nighter.nightspot.mapper.CategoryMapper;
 import com.nighter.nightspot.mapper.SpotMapper;
+import com.nighter.nightspot.models.Category;
 import com.nighter.nightspot.models.Spot;
 import com.nighter.nightspot.repository.SpotRepositoryJPA;
 import com.nighter.nightspot.service.definition.SpotService;
@@ -22,6 +24,7 @@ public class SpotServiceJPA implements SpotService {
     private  final SpotRepositoryJPA repository;
 
     private final SpotMapper spotMapper;
+    private final CategoryMapper categoryMapper;
     @Override
     public SpotWithCategoryDTO findByIdWithCategory(Long aLong) throws NoResultException {
         return spotMapper.toSpotDTOWithCategory(repository.findById(aLong)
@@ -45,9 +48,8 @@ public class SpotServiceJPA implements SpotService {
     }
 
     @Override
-    public void update(UpdateSpotDTO updateSpotDTO) throws Exception {
-        repository.save(spotMapper.fromUpdateSpotDTO(updateSpotDTO));
-
+    public void update(UpdateSpotDTO s) throws Exception {
+        repository.save(spotMapper.fromUpdateSpotDTO(s));
     }
 
     @Override

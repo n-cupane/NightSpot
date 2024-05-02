@@ -31,9 +31,11 @@ public class SpotController {
         }
     }
 
-    @PostMapping("/spot/update")
+    @PostMapping("/admin/spot/update")
     public ResponseEntity<Void> update(@Valid @RequestBody UpdateSpotDTO updateSpotDTO) {
+        System.out.println("sssssssssssssssssss");
         try {
+            System.out.println("aaaaaaaaaaaaaaaaa");
             spotService.update(updateSpotDTO);
             return ResponseEntity.ok().build();
         } catch (Exception e) {
@@ -41,7 +43,7 @@ public class SpotController {
         }
     }
 
-    @GetMapping("/spot/findByIdWithoutCategory/id/{aLong}")
+    @GetMapping("/auth/spot/findByIdWithoutCategory/id/{aLong}")
     public ResponseEntity<SpotWithoutCategoryDTO> findByIdWithoutCategory( @PathVariable Long aLong) throws NoResultException {
 
         SpotWithoutCategoryDTO s = spotService.findByIdWithoutCategory(aLong);
@@ -49,7 +51,7 @@ public class SpotController {
 
     }
 
-    @GetMapping("/spot/findByIdWithCategory/id/{aLong}")
+    @GetMapping("/auth/spot/findByIdWithCategory/id/{aLong}")
     public ResponseEntity<SpotWithCategoryDTO> findByIdWithCategory( @PathVariable Long aLong) throws NoResultException {
 
         SpotWithCategoryDTO s = spotService.findByIdWithCategory(aLong);

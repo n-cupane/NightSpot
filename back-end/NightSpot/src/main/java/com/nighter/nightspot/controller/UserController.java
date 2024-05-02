@@ -4,14 +4,22 @@ import com.nighter.nightspot.dto.spot.SpotWithCategoryDTO;
 import com.nighter.nightspot.dto.user.InsertUserDTO;
 import com.nighter.nightspot.dto.user.UpdateUserDTO;
 import com.nighter.nightspot.dto.user.UserDTO;
+import com.nighter.nightspot.dto.validation.ValidationErrorMessageDTO;
 import com.nighter.nightspot.error.exception.NoResultException;
 import com.nighter.nightspot.models.Role;
 import com.nighter.nightspot.models.Spot;
 import com.nighter.nightspot.models.User;
 import com.nighter.nightspot.service.definition.SpotService;
 import com.nighter.nightspot.service.definition.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,6 +29,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(exposedHeaders = "Authorization")
+@Tag(name = "User API", description = "User management API")
 public class UserController {
 
     @Autowired
@@ -31,6 +40,15 @@ public class UserController {
 
 
     @PostMapping("/all/user/insert")
+    @Operation(summary = "user sign up", description = "Given a InsertUserDTO object it will be inserted provided all" +
+            " mandatory fields are populated, password is complex enough and username and email are not already in use")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "user is inserted"),
+            @ApiResponse(responseCode = "400", description = "User fields are not correctly populated",
+                    content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
+                            schema = @Schema(implementation = ValidationErrorMessageDTO.class,
+                                    description = "error message displaying invalid fields"))),
+    })
     public ResponseEntity<Void> insertUser(@Valid @RequestBody InsertUserDTO user) {
         try {
             userService.save(user);

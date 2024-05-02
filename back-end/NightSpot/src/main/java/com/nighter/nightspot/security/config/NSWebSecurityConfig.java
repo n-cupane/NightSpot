@@ -36,6 +36,7 @@ public class NSWebSecurityConfig {
                     t.requestMatchers("/auth/**").authenticated();
                     t.requestMatchers("/all/**").permitAll();
                     t.requestMatchers("/images/**").permitAll();
+                    t.requestMatchers("/doc/**").permitAll();
                 })
                 .csrf(t -> t.disable())
                 .sessionManagement(t -> t.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
