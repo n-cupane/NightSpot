@@ -12,8 +12,11 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
 import com.nighter.nightspot.databinding.FragmentUserBinding;
 import com.nighter.nightspot.models.User;
+import com.squareup.picasso.Picasso;
 
 
 public class UserFragment extends Fragment {
@@ -40,9 +43,15 @@ public class UserFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         User user = args.getUser();
+        System.out.println(user);
+        System.out.println(user.getPhoto());
+        ImageView profileImage = binding.profileImage;
         binding.name.setText("Name: " + user.getFirstName());
         binding.instagram.setText("Instagram: " + user.getInstagramHandle());
         binding.username.setText(user.getUsername());
+        Picasso.get()
+                .load("http://192.168.1.62:8080/"+ user.getPhoto())
+                .into(profileImage);
 
 
         binding.Modify.setOnClickListener(v->{

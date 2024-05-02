@@ -20,7 +20,7 @@ public class TicketController {
     @Autowired
     private TicketService ticketService;
 
-    @PostMapping("/ticket/insert")
+    @PostMapping("/auth/ticket/insert")
     public ResponseEntity<Void> insertTicket(@Valid @RequestBody InsertTicketDTO ticket) {
         try {
             ticketService.save(ticket);

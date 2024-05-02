@@ -66,35 +66,31 @@ public class RegistrationFragment extends Fragment {
         RetrofitService retrofitService = new RetrofitService();
         UserApi userApi = retrofitService.getRetrofit().create(UserApi.class);
 
-        binding.signin.setOnClickListener(v->{
-            String username = binding.insertUsername.getText().toString();
+
+
+        binding.Next.setOnClickListener(v-> {
+
             String firstName = binding.insertfirstName.getText().toString();
             String lastName = binding.insertlastName.getText().toString();
             String email = binding.insertEmail.getText().toString();
-            String password = binding.insertPassword.getText().toString();
-            String instagramHandle = binding.insertInstagram.getText().toString();
-            String dobString = binding.insertDob.getText().toString();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            LocalDate dob = LocalDate.parse(dobString, formatter);
-
-
 
 
             User u = new User();
-            u.setUsername(username);
+
             u.setFirstName(firstName);
             u.setLastName(lastName);
             u.setEmail(email);
-            u.setPassword(password);
-            u.setInstagramHandle(instagramHandle);
-            u.setDateOfBirth(dob);
 
-            userApi.save(u).enqueue(new retrofit2.Callback<Void>(){
+            NavController navController = Navigation.findNavController(view);
+            NavDirections toLogin = RegistrationFragmentDirections.signUpSecondPart(u);
+            navController.navigate(toLogin);
+
+            /*userApi.save(u).enqueue(new retrofit2.Callback<Void>(){
 
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {
                     NavController navController = Navigation.findNavController(view);
-                    NavDirections toLogin = RegistrationFragmentDirections.signUpToLogin();
+                    NavDirections toLogin = RegistrationFragmentDirections.signUpSecondPart(u);
                     navController.navigate(toLogin);
 
                 }
@@ -105,6 +101,8 @@ public class RegistrationFragment extends Fragment {
                     Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, "Error occured", t);
                 }
             });
+
+        });*/
 
         });
     }

@@ -19,6 +19,6 @@ public class UserWithoutListsDTO {
     private String password;
     private String instagramHandle;
     private LocalDate dateOfBirth;
-    private byte[] photo;
+    private String photo;
 
 }

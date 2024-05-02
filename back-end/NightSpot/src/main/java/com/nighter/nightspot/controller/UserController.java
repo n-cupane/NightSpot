@@ -24,7 +24,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.util.List;
 
 @RestController
@@ -128,6 +130,16 @@ public class UserController {
         Role roleAsEnum = (role == 1) ? Role.ADMIN : Role.BASE;
         userService.updateRole(id, roleAsEnum);
         return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/all/photo/upload/{username}")
+    public ResponseEntity<Void> uploadPhoto(@RequestPart(name = "image") MultipartFile file, @PathVariable String username) {
+        try {
+            userService.uploadPhoto(file, username);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
 }

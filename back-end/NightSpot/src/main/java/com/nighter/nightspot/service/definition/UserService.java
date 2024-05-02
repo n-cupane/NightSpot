@@ -8,7 +8,9 @@ import com.nighter.nightspot.error.exception.NoResultException;
 import com.nighter.nightspot.models.Role;
 import com.nighter.nightspot.models.Spot;
 import com.nighter.nightspot.models.User;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.util.List;
 
 public interface UserService {
@@ -18,6 +20,8 @@ public interface UserService {
     List<UserDTO> findAll();
 
     void save(InsertUserDTO user);
+
+    void uploadPhoto(MultipartFile file, String username) throws NoResultException;
 
     void save(UpdateUserDTO user);
 

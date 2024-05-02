@@ -173,6 +173,12 @@ public class SpotFragment extends Fragment {
             navController.navigate(toMarkVisit);
         });
 
+        binding.ticket.setOnClickListener(v->{
+            NavController navController = Navigation.findNavController(view);
+            NavDirections toTicket = SpotFragmentDirections.spotToTicket(s);
+            navController.navigate(toTicket);
+        });
+
 
 
     }

@@ -24,6 +24,7 @@ import com.nighter.nightspot.retrofit.RetrofitService;
 import com.nighter.nightspot.retrofit.SpotApi;
 import com.nighter.nightspot.retrofit.UserApi;
 import com.nighter.nightspot.sharedpreferences.SharedPref;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -52,6 +53,7 @@ public class HomeFragment extends Fragment {
         RetrofitService retrofitService = new RetrofitService();
         SpotApi spotApi = retrofitService.getRetrofit().create(SpotApi.class);
         UserApi userApi = retrofitService.getRetrofit().create(UserApi.class);
+
         spotApi.findAllWithCategory("Bearer "+SharedPref.loadToken(getContext())).enqueue(new retrofit2.Callback<List<Spot>>() {
             @Override
             public void onResponse(retrofit2.Call<List<Spot>> call, retrofit2.Response<List<Spot>> response) {

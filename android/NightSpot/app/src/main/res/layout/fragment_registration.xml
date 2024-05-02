@@ -30,32 +30,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
         
-        <androidx.cardview.widget.CardView
-            android:id="@+id/username"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintWidth_percent="0.9"
-            app:layout_constraintHeight_percent="0.125"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/firstName"
-            app:cardCornerRadius="10dp"
-            android:backgroundTint="@color/lightGrey">
-
-            <EditText
-                android:id="@+id/insertUsername"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:hint="Username: "
-                android:textAlignment="center"
-                android:textSize="25sp" />
-
-
-        </androidx.cardview.widget.CardView>
-
 
         <androidx.cardview.widget.CardView
             android:id="@+id/firstName"
@@ -129,104 +103,25 @@
 
 
         </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:id="@+id/password"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintWidth_percent="0.9"
-            app:layout_constraintHeight_percent="0.125"
-            app:layout_constraintTop_toBottomOf="@id/email"
+
+        <Button
+            android:id="@+id/Back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:cardCornerRadius="10dp"
-            android:backgroundTint="@color/lightGrey">
+            app:layout_constraintEnd_toStartOf="@id/Next"/>
 
-            <EditText
-                android:id="@+id/insertPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:hint="Password: "
-                android:textAlignment="center"
-                android:inputType="textPassword"
-                android:textSize="25sp" />
+        <Button
+            android:id="@+id/Next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Next"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/Back"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:id="@+id/instagram"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintWidth_percent="0.9"
-            app:layout_constraintHeight_percent="0.125"
-            app:layout_constraintTop_toBottomOf="@id/password"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:cardCornerRadius="10dp"
-            android:backgroundTint="@color/lightGrey">
-
-            <EditText
-                android:id="@+id/insertInstagram"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:hint="Instagram link: "
-                android:textAlignment="center"
-                android:textSize="25sp" />
-
-
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:id="@+id/dob"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintWidth_percent="0.9"
-            app:layout_constraintHeight_percent="0.125"
-            app:layout_constraintTop_toBottomOf="@id/instagram"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:cardCornerRadius="10dp"
-            android:backgroundTint="@color/lightGrey">
-
-            <EditText
-                android:id="@+id/insertDob"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:hint="Date of birth: "
-                android:textAlignment="center"
-                android:inputType="date"
-                android:textSize="25sp" />
-
-
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:id="@+id/photo"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintWidth_percent="0.9"
-            app:layout_constraintHeight_percent="0.125"
-            app:layout_constraintTop_toBottomOf="@id/dob"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:cardCornerRadius="10dp"
-            android:backgroundTint="@color/lightGrey">
-
-            <EditText
-                android:id="@+id/insertPhoto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:hint="photo: "
-                android:textAlignment="center"
-                android:textSize="25sp" />
-
-
-        </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
         

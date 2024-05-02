@@ -14,6 +14,7 @@ import com.nighter.nightspot.R;
 import com.nighter.nightspot.fragments.HomeFragmentDirections;
 import com.nighter.nightspot.fragments.MySpotsFragmentDirections;
 import com.nighter.nightspot.models.Spot;
+import com.squareup.picasso.Picasso;
 
 public class MySpotsViewHolder extends RecyclerView.ViewHolder {
 
@@ -21,9 +22,12 @@ public class MySpotsViewHolder extends RecyclerView.ViewHolder {
     private TextView spotName;
     private ImageView card_immagine;
 
+    private ImageView spotImage;
+
     public MySpotsViewHolder(@NonNull View itemView) {
         super(itemView);
         spotName = itemView.findViewById(R.id.spotName);
+        spotImage = itemView.findViewById(R.id.spot_immagine);
 
 
     }
@@ -31,6 +35,10 @@ public class MySpotsViewHolder extends RecyclerView.ViewHolder {
     public void setSpot(Spot spot) {
         this.spot = spot;
         spotName.setText(spot.getName());
+        String spotImgString = spot.getPhotos().get(0).getPath();
+        Picasso.get()
+                .load("http://192.168.1.62:8080/"+spotImgString)
+                .into(spotImage);
         itemView.setOnClickListener(v -> {
             NavController controller = Navigation.findNavController(v);
             NavDirections destionation = MySpotsFragmentDirections.myspotsToSpot(spot);

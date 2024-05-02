@@ -20,7 +20,7 @@ public class UserWithoutVisitsDTO {
     private String password;
     private String instagramHandle;
     private LocalDate dateOfBirth;
-    private byte[] photo;
+    private String photo;
 
     private List<Ticket> tickets;
     private List<Review> reviews;

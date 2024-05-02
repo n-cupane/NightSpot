@@ -27,7 +27,7 @@ public class UserDTO {
     private String password;
     private String instagramHandle;
     private LocalDate dateOfBirth;
-    private byte[] photo;
+    private String photo;
 
     private List<TicketWithoutUserDTO> tickets;
     private List<VisitWithoutUser> visits;

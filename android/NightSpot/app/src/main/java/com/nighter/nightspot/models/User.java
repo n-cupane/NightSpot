@@ -16,7 +16,7 @@ public class User implements Serializable {
     private String instagramHandle;
 
     private LocalDate dateOfBirth;
-    private byte[] photo;
+    private String photo;
 
     private List<Ticket> tickets;
     private List<Visit> visits;
@@ -87,11 +87,11 @@ public class User implements Serializable {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public byte[] getPhoto() {
+    public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(byte[] photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
 
@@ -139,7 +139,7 @@ public class User implements Serializable {
                 ", password='" + password + '\'' +
                 ", instagramHandle='" + instagramHandle + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
-                ", photo=" + Arrays.toString(photo) +
+                ", photo=" + photo +
                 ", tickets=" + tickets +
                 ", visits=" + visits +
                 ", reviews=" + reviews +

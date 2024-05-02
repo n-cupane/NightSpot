@@ -19,7 +19,7 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @PostMapping("/product/insert")
+    @PostMapping("/all/product/insert")
     public ResponseEntity<Void> insertProduct(@Valid @RequestBody InsertProductDTO product) {
         try {
             productService.save(product);

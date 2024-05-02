@@ -2,13 +2,17 @@ package com.nighter.nightspot.retrofit;
 
 import com.nighter.nightspot.models.User;
 
+import java.io.File;
 import java.util.List;
 
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 public interface UserApi {
@@ -27,5 +31,10 @@ public interface UserApi {
 
     @POST("/auth/user/update")
     Call<Void> updateUser(@Body User user,@Header("Authorization") String token);
+
+
+    @POST("/all/photo/upload/{username}")
+    @Multipart
+    Call<Void> uploadPhoto(@Part MultipartBody.Part image, @Path("username") String username);
 
 }

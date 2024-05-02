@@ -41,7 +41,7 @@ public class User implements UserDetails {
 
     @Lob
     @Column(columnDefinition = "MEDIUMBLOB")
-    private byte[] photo;
+    private String photo;
 
     @OneToMany(mappedBy = "user")
     private List<Ticket> tickets;

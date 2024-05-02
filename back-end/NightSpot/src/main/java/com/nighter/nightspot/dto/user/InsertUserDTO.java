@@ -31,6 +31,6 @@ public class InsertUserDTO {
     private String instagramHandle;
     @Past(message = "date of birth must be in the past")
     private LocalDate dateOfBirth;
-    private byte[] photo;
+    private String photo;
 
 }

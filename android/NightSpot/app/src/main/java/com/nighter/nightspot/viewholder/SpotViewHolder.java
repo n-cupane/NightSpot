@@ -15,17 +15,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.nighter.nightspot.R;
 import com.nighter.nightspot.fragments.HomeFragmentDirections;
 import com.nighter.nightspot.models.Spot;
+import com.squareup.picasso.Picasso;
 
 public class SpotViewHolder extends RecyclerView.ViewHolder {
 
     private Spot spot;
     private TextView spotName;
+
+    private ImageView spotImage;
     private ImageView card_immagine;
 
 
     public SpotViewHolder(@NonNull View itemView) {
         super(itemView);
         spotName = itemView.findViewById(R.id.spotName);
+        spotImage = itemView.findViewById(R.id.spot_immagine);
 
 
     }
@@ -33,6 +37,10 @@ public class SpotViewHolder extends RecyclerView.ViewHolder {
     public void setSpot(Spot spot) {
         this.spot = spot;
         spotName.setText(spot.getName());
+        String spotImgString = spot.getPhotos().get(0).getPath();
+        Picasso.get()
+                .load("http://192.168.1.62:8080/"+spotImgString)
+                .into(spotImage);
         itemView.setOnClickListener(v -> {
             NavController controller = Navigation.findNavController(v);
             NavDirections destionation = HomeFragmentDirections.homeToSpot(spot);

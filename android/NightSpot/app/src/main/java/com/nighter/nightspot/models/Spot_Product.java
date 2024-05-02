@@ -10,7 +10,7 @@ import java.time.LocalTime;
 
 public class Spot_Product implements Serializable {
 
-    private Spot_ProductKey id;
+    private Long id;
 
     private Spot spot;
 
@@ -18,11 +18,11 @@ public class Spot_Product implements Serializable {
 
     private Double price;
 
-    public Spot_ProductKey getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Spot_ProductKey id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

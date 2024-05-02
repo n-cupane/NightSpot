@@ -19,7 +19,7 @@ public class Spot_ProductController {
     @Autowired
     private Spot_ProductService spotProductService;
 
-    @PostMapping("/spot_product/insert")
+    @PostMapping("/all/spot_product/insert")
     public ResponseEntity<Void> insert(@Valid @RequestBody InsertSpotProductDTO insertSpotProductDTO) {
         try {
             spotProductService.insert(insertSpotProductDTO);
@@ -58,7 +58,7 @@ public class Spot_ProductController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/all/spot_product/findBySpotId/{id}")
+    @GetMapping("/all/spot_product/findBySpotId/{spotId}")
     public ResponseEntity<List<SpotProductDTO>> findBySpotId(@PathVariable Long spotId) throws NoResultException {
         List<SpotProductDTO>sList = spotProductService.findBySpotI(spotId);
         return ResponseEntity.ok(sList);

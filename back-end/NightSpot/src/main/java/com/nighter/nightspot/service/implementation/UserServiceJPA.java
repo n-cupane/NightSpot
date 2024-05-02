@@ -7,6 +7,7 @@ import com.nighter.nightspot.dto.user.UserDTO;
 import com.nighter.nightspot.error.exception.NoResultException;
 import com.nighter.nightspot.mapper.SpotMapper;
 import com.nighter.nightspot.mapper.UserMapper;
+import com.nighter.nightspot.models.Photo;
 import com.nighter.nightspot.models.Role;
 import com.nighter.nightspot.models.Spot;
 import com.nighter.nightspot.models.User;
@@ -19,7 +20,9 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.*;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +40,8 @@ public class UserServiceJPA implements UserService {
     private final PasswordEncoder passwordEncoder;
 
     private final JWTUtilities jwtUtilities;
+
+    private static final String imagesFolder = "src/main/resources/static/images";
 
 
     @Override
@@ -64,6 +69,39 @@ public class UserServiceJPA implements UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         repo.save(user);
     }
+
+    @Override
+    public void uploadPhoto(MultipartFile file, String username) throws NoResultException {
+        InputStream is = null;
+        OutputStream os = null;
+        String fileName = file.getOriginalFilename();
+        File newFile = new File(imagesFolder + File.separator + fileName);
+
+        try {
+            is = file.getInputStream();
+
+            if (!newFile.exists()) {
+                newFile.createNewFile();
+            }
+
+            os = new FileOutputStream(newFile);
+            int read = 0;
+            byte[] bytes = new byte[1024];
+
+            while ((read = is.read(bytes)) != -1) {
+                os.write(bytes, 0, read);
+            }
+                } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            // Aggiorna l'utente nel repository con il nuovo nome del file
+            User u = mapper.fromUserDTO(findByUsername(username));
+            u.setPhoto("images/" + fileName);
+            repo.save(u);
+
+    }
+
 
     @Override
     public void save(UpdateUserDTO user) {
