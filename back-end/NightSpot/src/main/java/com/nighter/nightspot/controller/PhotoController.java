@@ -59,7 +59,7 @@ public class PhotoController {
         return ResponseEntity.ok(photos);
     }
 
-    @DeleteMapping("/photo/delete/{id}")
+    @DeleteMapping("/admin/photo/delete/{id}")
     public ResponseEntity<Void> deletePhoto(@PathVariable Long id) throws NoResultException {
         photoService.deleteById(id);
         return ResponseEntity.ok().build();

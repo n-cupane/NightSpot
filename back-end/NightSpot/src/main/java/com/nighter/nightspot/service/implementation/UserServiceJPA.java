@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.io.*;
 import java.util.List;
@@ -34,8 +35,8 @@ public class UserServiceJPA implements UserService {
     @Autowired
     private UserRepositoryJPA repo;
 
-    @Autowired
-    private SpotRepositoryJPA spotRepo;
+//    @Autowired
+//    private SpotRepositoryJPA spotRepo;
 
     private final UserMapper mapper;
 
@@ -171,10 +172,16 @@ public class UserServiceJPA implements UserService {
 
     @Override
     public void updateUserSpots(Long id, Spot spot) throws NoResultException {
-        User u = repo.findById(id).orElseThrow( () -> new UsernameNotFoundException("Username not found: " + id));
-        List<Spot> spots = u.getSpots();
-        spots.remove(spot);
-        repo.updateUserSpots(id,spots);
+        User u = mapper.fromUserDTO(findById(id));
+        List<Spot> spots = new ArrayList<>(u.getSpots());
+        System.out.println("PRIMA: " + u.getSpots());
+        u.setSpots(
+                spots.stream()
+                        .filter(s -> s.getId() == spot.getId())
+                        .toList()
+        );
+        System.out.println("DOPO" + u.getSpots());
+        repo.save(u);
 
     }
 

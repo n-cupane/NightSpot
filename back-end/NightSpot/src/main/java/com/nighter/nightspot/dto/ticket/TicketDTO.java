@@ -15,5 +15,6 @@ public class TicketDTO {
     private UserWithoutTicketsDTO user;
     private SpotWithoutCategoryDTO spot;
     private String description;
+    private Boolean solved;
 
 }

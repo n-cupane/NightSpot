@@ -1,0 +1,2 @@
+insert into category(name) values ('discoteca');
+insert into userozzo (first_name, last_name, username, email, password, date_of_birth) values ('Rino', 'Rano', 'r.rano', 'r.rano@gmail.com', 'Pollo.11', '1990-01-12');

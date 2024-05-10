@@ -19,4 +19,6 @@ public interface TicketService {
 
     void deleteById(Long id);
 
+    void closeTicket(Long id);
+
 }

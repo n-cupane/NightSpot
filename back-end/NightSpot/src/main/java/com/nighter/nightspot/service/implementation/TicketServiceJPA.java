@@ -59,4 +59,9 @@ public class TicketServiceJPA implements TicketService {
     public void deleteById(Long id) {
         repo.deleteById(id);
     }
+
+    @Override
+    public void closeTicket(Long id) {
+        repo.closeTicket(id);
+    }
 }

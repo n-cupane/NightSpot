@@ -37,10 +37,12 @@ public class NSWebSecurityConfig {
                     t.requestMatchers("/all/**").permitAll();
                     t.requestMatchers("/images/**").permitAll();
                     t.requestMatchers("/doc/**").permitAll();
+                    t.anyRequest().permitAll();
                 })
                 .csrf(t -> t.disable())
                 .sessionManagement(t -> t.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
+                .headers(t -> t.frameOptions(t2 -> t2.disable()));
         return http.build();
 
     }

@@ -14,4 +14,6 @@ public class TicketWithoutSpotDTO {
 
     private String description;
 
+    private Boolean solved;
+
 }

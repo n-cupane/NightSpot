@@ -17,4 +17,6 @@ public class TicketWithoutUserDTO {
 
     private String description;
 
+    private Boolean solved;
+
 }

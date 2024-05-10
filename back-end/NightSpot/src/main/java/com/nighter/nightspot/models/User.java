@@ -39,8 +39,7 @@ public class User implements UserDetails {
     @Column()
     private Role role;
 
-    @Lob
-    @Column(columnDefinition = "MEDIUMBLOB")
+    @Column()
     private String photo;
 
     @OneToMany(mappedBy = "user")

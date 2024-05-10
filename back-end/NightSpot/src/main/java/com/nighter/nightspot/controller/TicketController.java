@@ -40,7 +40,7 @@ public class TicketController {
         }
     }
 
-    @GetMapping("/ticket/show/id/{id}")
+    @GetMapping("/auth/ticket/show/id/{id}")
     public ResponseEntity<TicketDTO> showTicket(@PathVariable Long id) throws NoResultException {
         TicketDTO ticket = ticketService.findById(id);
         return ResponseEntity.ok(ticket);
@@ -55,6 +55,12 @@ public class TicketController {
     @DeleteMapping("/ticket/delete/{id}")
     public ResponseEntity<Void> deleteTicket(@PathVariable Long id) throws NoResultException {
         ticketService.deleteById(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/admin/ticket/close/{ticketId}")
+    public ResponseEntity<Void> closeTicket(@PathVariable Long ticketId) {
+        ticketService.closeTicket(ticketId);
         return ResponseEntity.ok().build();
     }
 }

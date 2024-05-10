@@ -22,5 +22,7 @@ public class Ticket {
 
     @Column(nullable = false)
     private String description;
+    @Column(nullable = false)
+    private Boolean solved = false;
 
 }

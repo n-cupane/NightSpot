@@ -23,4 +23,6 @@ public class UpdateTicketDTO {
     @NotBlank(message = "description must be present")
     private String description;
 
+    private Boolean solved;
+
 }
