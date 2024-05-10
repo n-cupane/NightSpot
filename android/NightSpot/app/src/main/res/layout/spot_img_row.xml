@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
+        android:layout_marginBottom="3dp"
         android:id="@+id/spotImgRow"
         android:scaleType="centerCrop"
         android:layout_width="match_parent"

@@ -8,6 +8,7 @@ import com.nighter.nightspot.dto.validation.ValidationErrorMessageDTO;
 import com.nighter.nightspot.error.exception.NoResultException;
 import com.nighter.nightspot.models.Role;
 import com.nighter.nightspot.models.Spot;
+import com.nighter.nightspot.models.UploadImageRequest;
 import com.nighter.nightspot.models.User;
 import com.nighter.nightspot.service.definition.SpotService;
 import com.nighter.nightspot.service.definition.UserService;
@@ -133,13 +134,21 @@ public class UserController {
     }
 
     @PostMapping("/all/photo/upload/{username}")
-    public ResponseEntity<Void> uploadPhoto(@RequestPart(name = "image") MultipartFile file, @PathVariable String username) {
+    public ResponseEntity<Void> uploadPhoto(@RequestBody UploadImageRequest image, @PathVariable String username) {
         try {
-            userService.uploadPhoto(file, username);
+            userService.uploadPhoto(image, username);
             return ResponseEntity.ok().build();
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
+    }
+
+
+
+    @PostMapping("auth/user/remove-favorite/{userId}")
+    public ResponseEntity<Void> removeFavorite (@PathVariable Long userId, @RequestBody Spot spot) throws NoResultException {
+        userService.updateUserSpots(userId, spot);
+        return ResponseEntity.ok().build();
     }
 
 }

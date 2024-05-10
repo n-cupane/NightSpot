@@ -24,10 +24,13 @@ public class MySpotsViewHolder extends RecyclerView.ViewHolder {
 
     private ImageView spotImage;
 
+    private ImageView spot_genre;
+
     public MySpotsViewHolder(@NonNull View itemView) {
         super(itemView);
         spotName = itemView.findViewById(R.id.spotName);
         spotImage = itemView.findViewById(R.id.spot_immagine);
+        spot_genre = itemView.findViewById(R.id.spot_genre_icon);
 
 
     }
@@ -35,6 +38,7 @@ public class MySpotsViewHolder extends RecyclerView.ViewHolder {
     public void setSpot(Spot spot) {
         this.spot = spot;
         spotName.setText(spot.getName());
+        spot_genre.setImageResource(R.drawable.fire);
         String spotImgString = spot.getPhotos().get(0).getPath();
         Picasso.get()
                 .load("http://192.168.1.62:8080/"+spotImgString)

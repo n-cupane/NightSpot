@@ -6,4 +6,7 @@
     <color name="grey">#151515</color>
     <color name="lightGrey">#1BCFCBCB</color>
     <color name="Nightviolet">#2A1A51</color>
+    <color name="semiTransparentColor">#97534848</color>
+    <color name="cardBackground">#DF151515</color>
+    <color name="transparent">#00FFFFFF</color>
 </resources>

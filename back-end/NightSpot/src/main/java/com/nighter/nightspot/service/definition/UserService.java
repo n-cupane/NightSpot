@@ -7,10 +7,12 @@ import com.nighter.nightspot.dto.user.UserDTO;
 import com.nighter.nightspot.error.exception.NoResultException;
 import com.nighter.nightspot.models.Role;
 import com.nighter.nightspot.models.Spot;
+import com.nighter.nightspot.models.UploadImageRequest;
 import com.nighter.nightspot.models.User;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public interface UserService {
@@ -21,7 +23,7 @@ public interface UserService {
 
     void save(InsertUserDTO user);
 
-    void uploadPhoto(MultipartFile file, String username) throws NoResultException;
+    void uploadPhoto(UploadImageRequest image, String username) throws NoResultException, IOException;
 
     void save(UpdateUserDTO user);
 
@@ -34,6 +36,8 @@ public interface UserService {
     String login(String username, String password) throws Exception;
 
     void addFavorite(SpotWithCategoryDTO spot, UserDTO user);
+
+    void updateUserSpots(Long id, Spot spot) throws NoResultException;
 
     List<UserDTO> findAllAdmins();
 

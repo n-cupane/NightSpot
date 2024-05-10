@@ -69,4 +69,9 @@ public class SpotServiceJPA implements SpotService {
                         .orElseThrow(() -> new NoResultException("Spot with name " + name + " not found"))
         );
     }
+
+    @Override
+    public List<SpotWithoutCategoryDTO> findAllByCategoryId(Long id) {
+        return repository.findAllByCategoryId(id).stream().map(t->spotMapper.toSpotDTOWithoutCategory(t)).toList();
+    }
 }

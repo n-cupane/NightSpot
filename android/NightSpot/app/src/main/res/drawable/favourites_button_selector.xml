@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true" >
+        <layer-list>
+            <item>
+                <shape android:shape="rectangle">
+                    <corners android:radius="100dp" />
+                    <stroke android:width="1dip" android:color="#00534848" />
+                    <solid android:color="#00534848"/>
+                </shape>
+            </item>
+            <item android:drawable="@drawable/heart_favourite" /> <!-- Immagine quando premuto -->
+        </layer-list>
+    </item>
+    <item android:state_focused="true">
+        <layer-list>
+            <item>
+                <shape android:shape="rectangle">
+                    <corners android:radius="100dp" />
+                    <stroke android:width="1dip" android:color="#00534848" />
+                    <solid android:color="#00534848"/>
+                </shape>
+            </item>
+            <item android:drawable="@drawable/heart" /> <!-- Immagine quando in focus -->
+        </layer-list>
+    </item>
+    <item>
+        <layer-list>
+            <item>
+                <shape android:shape="rectangle">
+                    <corners android:radius="100dp" />
+                    <stroke android:width="1dip" android:color="#00534848" />
+                    <solid android:color="#00534848"/>
+                </shape>
+            </item>
+            <item android:drawable="@drawable/heart" /> <!-- Immagine normale -->
+        </layer-list>
+    </item>
+</selector>

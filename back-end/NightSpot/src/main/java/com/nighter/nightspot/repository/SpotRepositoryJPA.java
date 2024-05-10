@@ -20,5 +20,7 @@ public interface SpotRepositoryJPA extends JpaRepository<Spot,Long> {
     @Modifying
     @Query("update spot s set s.name = :name, s.position = :position, s.contact = :contact, s.timetables = :timetables, s.category = :category, s.photos = :photos")
     void update(String name, String position, String contact, String timetables, Category category, List<Photo> photos);
+    @Query("select s from spot s where s.category.id=:id")
+    List<Spot> findAllByCategoryId(Long id);
 
 }

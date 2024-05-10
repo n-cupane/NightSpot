@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.MarkAsVisitedFragment"
-    android:background="@color/Nightviolet">
+    android:background="@drawable/background_blurred">
 
     <DatePicker
         android:id="@+id/calendarVisit"
@@ -37,6 +37,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="salva"
+        android:background="@drawable/round_black_button"
+        app:backgroundTint="@null"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/spinner1"
         app:layout_constraintStart_toStartOf="parent"

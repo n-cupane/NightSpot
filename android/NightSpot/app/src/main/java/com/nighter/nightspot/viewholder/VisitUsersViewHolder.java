@@ -19,10 +19,13 @@ public class VisitUsersViewHolder extends RecyclerView.ViewHolder {
     private TextView userUsername;
     private ImageView card_immagine;
 
+    private ImageView spot_genre;
+
 
     public VisitUsersViewHolder(@NonNull View itemView) {
         super(itemView);
         userUsername = itemView.findViewById(R.id.userUsername);
+
 
 
     }

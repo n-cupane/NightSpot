@@ -1,5 +1,7 @@
 package com.nighter.nightspot.retrofit;
 
+import com.nighter.nightspot.models.Spot;
+import com.nighter.nightspot.models.UploadImageRequest;
 import com.nighter.nightspot.models.User;
 
 import java.io.File;
@@ -34,7 +36,9 @@ public interface UserApi {
 
 
     @POST("/all/photo/upload/{username}")
-    @Multipart
-    Call<Void> uploadPhoto(@Part MultipartBody.Part image, @Path("username") String username);
+    Call<Void> uploadPhoto(@Body UploadImageRequest uploadImageRequest, @Path("username") String username);
+
+    @POST("auth/user/remove-favorite/{userId}")
+    Call<Void> removeFavorite(@Path("userId") Long userId,@Header("Authorization") String token, @Body Spot spot);
 
 }

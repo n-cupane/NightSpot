@@ -23,5 +23,8 @@ public interface SpotApi {
     @GET("/auth/photo/show/id/{id}")
     Call<byte[]> showPhoto(@Header("Authorization") String token, @Path("id") Long id);
 
+    @GET("/auth/spot/findByCategory/{id}")
+    Call<List<Spot>> findSpotByCategory(@Header("Authorization") String token,@Path("id") Long id);
+
 }
 

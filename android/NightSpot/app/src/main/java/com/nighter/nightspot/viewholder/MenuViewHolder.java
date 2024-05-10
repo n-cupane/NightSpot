@@ -22,12 +22,14 @@ public class MenuViewHolder extends RecyclerView.ViewHolder{
     private TextView productPrice;
 
     private TextView productName;
-    private ImageView card_immagine;
+    private ImageView menu_image;
 
     public MenuViewHolder(@NonNull View itemView) {
         super(itemView);
         productName = itemView.findViewById(R.id.productName);
         productPrice = itemView.findViewById(R.id.productPrice);
+        menu_image = itemView.findViewById(R.id.menu_immagine);
+
 
 
     }
@@ -35,6 +37,7 @@ public class MenuViewHolder extends RecyclerView.ViewHolder{
     public void setProduct(Spot_Product product) {
         this.product = product;
         productName.setText(product.getProduct().getName());
+        menu_image.setImageResource(R.drawable.drink);
         productPrice.setText(String.valueOf(product.getPrice()));
 
     }

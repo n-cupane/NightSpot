@@ -105,14 +105,20 @@ public class MarkAsVisitedFragment extends Fragment {
             int dayOfMonth = binding.calendarVisit.getDayOfMonth();
             int month = binding.calendarVisit.getMonth();
             int year = binding.calendarVisit.getYear();
+            LocalDate of = LocalDate.of(year, month, dayOfMonth);
 
+            /*String visitDateString;
 
-            String visitDateString;
-            if (month < 10) {
+            if (month < 10 && dayOfMonth >= 10) {
                 String monthString = "0" + month;
                 String dayOfMonthString = String.valueOf(dayOfMonth);
                 String yearString = String.valueOf(year);
                 visitDateString = yearString + "-" + monthString + "-" + dayOfMonthString;
+            } else if(month < 10 && dayOfMonth<10){
+                String monthString = "0" + month;
+                String dayOfMonthString = String.valueOf(dayOfMonth);
+                String yearString = String.valueOf(year);
+                visitDateString = yearString + "-" + monthString + "-" + "0" +  dayOfMonthString;
             } else {
                 String monthString = String.valueOf(month);
                 String dayOfMonthString = String.valueOf(dayOfMonth);
@@ -120,9 +126,12 @@ public class MarkAsVisitedFragment extends Fragment {
                 visitDateString = yearString + "-" + monthString + "-" + dayOfMonthString;
             }
 
+
             String selectedValue = (String) binding.spinner1.getSelectedItem();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            LocalDate formattedDate = LocalDate.parse(visitDateString, formatter);
+            LocalDate formattedDate = LocalDate.parse(visitDateString, formatter);*/
+
+            String selectedValue = (String) binding.spinner1.getSelectedItem();
 
             LocalTime time = null;
 
@@ -130,20 +139,20 @@ public class MarkAsVisitedFragment extends Fragment {
 
             switch (selectedValue) {
                 case "mattina":
-                    time = LocalTime.of(9, 0, 10);
+                    time = LocalTime.of(9, 0, 0);
                     break;
                 case "pomeriggio":
-                    time = LocalTime.of(13, 0, 10);
+                    time = LocalTime.of(13, 0, 0);
                     break;
                 case "sera":
-                    time = LocalTime.of(21, 0, 10);
+                    time = LocalTime.of(21, 0, 0);
                     break;
             }
 
             Visit visit = new Visit();
             visit.setSpot(s);
             visit.setUser(u);
-            visit.setVisitDate(formattedDate);
+            visit.setVisitDate(of);
             visit.setVisitTime(time);
 
             visitApi.insertVisit(visit, "Bearer " + token).enqueue(new retrofit2.Callback<Void>() {

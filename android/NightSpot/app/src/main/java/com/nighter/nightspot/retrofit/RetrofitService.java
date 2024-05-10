@@ -38,8 +38,6 @@ public class RetrofitService {
 
         @Override
         public JsonElement serialize(LocalDate src, Type typeOfSrc, JsonSerializationContext context) {
-            JsonObject j = new JsonObject();
-            j.addProperty("dateOfBirth", src.getYear() + "-" + src.getMonthValue() + "-" + src.getDayOfMonth());
             return new JsonPrimitive(src.format(DateTimeFormatter.ISO_LOCAL_DATE));
         }
     }).registerTypeAdapter(LocalTime.class, new JsonDeserializer<LocalTime>() {

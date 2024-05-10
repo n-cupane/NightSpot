@@ -28,6 +28,7 @@ import android.widget.Toast;
 
 import com.nighter.nightspot.MainActivity;
 import com.nighter.nightspot.R;
+import com.nighter.nightspot.adapter.MySpotsAdapter;
 import com.nighter.nightspot.adapter.SpotAdapter;
 import com.nighter.nightspot.adapter.SpotPhotoAdapter;
 import com.nighter.nightspot.databinding.FragmentSpotBinding;
@@ -41,6 +42,7 @@ import com.nighter.nightspot.sharedpreferences.SharedPref;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -56,8 +58,11 @@ public class SpotFragment extends Fragment {
     private User u;
     private SpotFragmentArgs args;
     private FragmentSpotBinding binding;
+    private List<Spot> MySpots;
 
-    private byte[] imageBytes;
+    private boolean favorite = false;
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -86,9 +91,6 @@ public class SpotFragment extends Fragment {
 
         //Setto l'immagine
 
-
-
-
         //binding.spotImg.setImageResource();
         binding.spotName.setText(args.getSpot().getName());
         binding.spotContact.setText(args.getSpot().getContact());
@@ -99,11 +101,76 @@ public class SpotFragment extends Fragment {
         // Ricavo i dati dell'utente e dallo spot
         RetrofitService retrofitService = new RetrofitService();
         SpotApi spotApi = retrofitService.getRetrofit().create(SpotApi.class);
+        UserApi userApi = retrofitService.getRetrofit().create(UserApi.class);
+        String username = SharedPref.loadCredentials(getContext()).getUsername();
         String token = SharedPref.loadToken(getContext());
 
-        /*Picasso.get()
-                .load("http://192.168.1.62:8080/all/photo/show/id/3")
-                .into(binding.spotImg);*/
+        userApi.getUserByUsername(username, "Bearer " + token).enqueue(new retrofit2.Callback<User>(){
+
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                u= response.body();
+                MySpots = u.getSpots();
+                System.out.println(MySpots);
+                boolean favorite = false;
+
+                for(Spot mySpots : MySpots) {
+                    if(mySpots.getId() == id) {
+                        favorite =true;
+                    }
+                }
+
+                if(!favorite) {
+                    binding.AddFavorites.setOnClickListener(v->{
+                        spotApi.addSpotToFavourites(id,"Bearer "+token,"Bearer "+token).enqueue(new retrofit2.Callback<Void>(){
+
+                            @Override
+                            public void onResponse(Call<Void> call, Response<Void> response) {
+                                Toast.makeText(getContext(), "added to favourites ", Toast.LENGTH_SHORT).show();
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<Void> call, Throwable t) {
+                                Toast.makeText(getContext(), "added to favourites failed", Toast.LENGTH_SHORT).show();
+                                Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, "Error occured", t);
+                            }
+                        });
+
+
+                    });
+
+
+                } else {
+                    binding.AddFavorites.setText("Rimuovi");
+
+                    binding.AddFavorites.setOnClickListener(v->{
+                        userApi.removeFavorite(u.getId(),"Bearer "+token,s).enqueue(new retrofit2.Callback<Void>(){
+
+                            @Override
+                            public void onResponse(Call<Void> call, Response<Void> response) {
+                                Toast.makeText(getContext(), "removed from favorites ", Toast.LENGTH_SHORT).show();
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<Void> call, Throwable t) {
+                                Toast.makeText(getContext(), "error removing from favorites", Toast.LENGTH_SHORT).show();
+                                Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, "Error occured", t);
+                            }
+                        });
+
+
+                    });
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+
+            }
+        });
 
 
         //setto le immagini
@@ -120,6 +187,10 @@ public class SpotFragment extends Fragment {
             NavDirections toMarkVisit = SpotFragmentDirections.spotToMenu(s);
             navController.navigate(toMarkVisit);
         });
+
+
+
+
 
 
 
@@ -145,26 +216,15 @@ public class SpotFragment extends Fragment {
 
         });
 
+
+
         // Add spot to favourites
 
-        binding.AddFavorites.setOnClickListener(v->{
-            spotApi.addSpotToFavourites(id,"Bearer "+token,"Bearer "+token).enqueue(new retrofit2.Callback<Void>(){
-
-                @Override
-                public void onResponse(Call<Void> call, Response<Void> response) {
-                    Toast.makeText(getContext(), "added to favourites ", Toast.LENGTH_SHORT).show();
-
-                }
-
-                @Override
-                public void onFailure(Call<Void> call, Throwable t) {
-                    Toast.makeText(getContext(), "added to favourites failed", Toast.LENGTH_SHORT).show();
-                    Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, "Error occured", t);
-                }
-            });
 
 
-        });
+
+
+
 
         binding.setVisit.setOnClickListener(v->{
             System.out.println(s);

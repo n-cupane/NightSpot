@@ -7,10 +7,8 @@ import com.nighter.nightspot.dto.user.UserDTO;
 import com.nighter.nightspot.error.exception.NoResultException;
 import com.nighter.nightspot.mapper.SpotMapper;
 import com.nighter.nightspot.mapper.UserMapper;
-import com.nighter.nightspot.models.Photo;
-import com.nighter.nightspot.models.Role;
-import com.nighter.nightspot.models.Spot;
-import com.nighter.nightspot.models.User;
+import com.nighter.nightspot.models.*;
+import com.nighter.nightspot.repository.SpotRepositoryJPA;
 import com.nighter.nightspot.repository.UserRepositoryJPA;
 import com.nighter.nightspot.security.jwt.JWTUtilities;
 import com.nighter.nightspot.service.definition.UserService;
@@ -22,6 +20,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Base64;
 import java.io.*;
 import java.util.List;
 import java.util.Optional;
@@ -32,6 +33,9 @@ public class UserServiceJPA implements UserService {
 
     @Autowired
     private UserRepositoryJPA repo;
+
+    @Autowired
+    private SpotRepositoryJPA spotRepo;
 
     private final UserMapper mapper;
 
@@ -70,37 +74,27 @@ public class UserServiceJPA implements UserService {
         repo.save(user);
     }
 
+
+
     @Override
-    public void uploadPhoto(MultipartFile file, String username) throws NoResultException {
-        InputStream is = null;
-        OutputStream os = null;
-        String fileName = file.getOriginalFilename();
-        File newFile = new File(imagesFolder + File.separator + fileName);
+    public void uploadPhoto(UploadImageRequest image, String username) throws NoResultException, IOException {
 
-        try {
-            is = file.getInputStream();
+        byte[] imageByte = image.getImageData();
 
-            if (!newFile.exists()) {
-                newFile.createNewFile();
-            }
+        String fileName = System.currentTimeMillis() + "_" + image.getFileName();
 
-            os = new FileOutputStream(newFile);
-            int read = 0;
-            byte[] bytes = new byte[1024];
+        String pathName = imagesFolder + File.separator + fileName;
 
-            while ((read = is.read(bytes)) != -1) {
-                os.write(bytes, 0, read);
-            }
-                } catch (IOException e) {
-                e.printStackTrace();
-            }
+        Files.write(Paths.get(pathName),imageByte);
 
-            // Aggiorna l'utente nel repository con il nuovo nome del file
-            User u = mapper.fromUserDTO(findByUsername(username));
-            u.setPhoto("images/" + fileName);
-            repo.save(u);
+        User u = mapper.fromUserDTO(findByUsername(username));
+
+        u.setPhoto("images/" + fileName);
+
+        repo.save(u);
 
     }
+
 
 
     @Override
@@ -158,10 +152,30 @@ public class UserServiceJPA implements UserService {
 
     @Override
     public void addFavorite(SpotWithCategoryDTO spot, UserDTO user) {
-        Spot spot1 = spotMapper.fromSpotWithCategoryDTO(spot);
-        user.getSpots().add(spot);
-        User u = mapper.fromUserDTO(user);
-        repo.save(u);
+        List<SpotWithCategoryDTO> spots = user.getSpots();
+        boolean contains = false;
+
+        for (SpotWithCategoryDTO userSpots : spots) {
+            if(userSpots.getId() == spot.getId()) {
+                contains = true;
+            }
+        }
+
+        if(!contains) {
+            user.getSpots().add(spot);
+            User u = mapper.fromUserDTO(user);
+            repo.save(u);
+        }
+
+    }
+
+    @Override
+    public void updateUserSpots(Long id, Spot spot) throws NoResultException {
+        User u = repo.findById(id).orElseThrow( () -> new UsernameNotFoundException("Username not found: " + id));
+        List<Spot> spots = u.getSpots();
+        spots.remove(spot);
+        repo.updateUserSpots(id,spots);
+
     }
 
     @Override
@@ -175,4 +189,5 @@ public class UserServiceJPA implements UserService {
     public void updateRole(Long id, Role role) throws NoResultException {
         repo.updateRole(id, role);
     }
+
 }

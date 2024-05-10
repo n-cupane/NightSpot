@@ -1,7 +1,7 @@
 package com.nighter.nightspot.repository;
 
-import com.nighter.nightspot.models.Role;
-import com.nighter.nightspot.models.User;
+import com.nighter.nightspot.dto.spot.SpotWithCategoryDTO;
+import com.nighter.nightspot.models.*;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -24,5 +24,17 @@ public interface UserRepositoryJPA extends JpaRepository<User, Long> {
     @Transactional
     @Query("update User u set u.role = :role where u.id = :id")
     void updateRole(Long id, Role role);
+
+    @Modifying(clearAutomatically = true, flushAutomatically = true)
+    @Transactional
+    @Query("update User u set u.spots = :spots where u.id = :id")
+    void updateUserSpots(Long id, List<Spot> spots);
+
+
+
+
+
+
+
 
 }

@@ -77,7 +77,7 @@ public class LogInFragment extends Fragment {
                             SharedPref.saveToken(getContext(),response.headers().get("Authorization"));
                             SharedPref.saveCredentials(getContext(),user);
                             NavController navController = Navigation.findNavController(view);
-                            NavDirections toHome = LogInFragmentDirections.loginToHome();
+                            NavDirections toHome = LogInFragmentDirections.loginToHome(1);
                             navController.navigate(toHome);
 
                         }

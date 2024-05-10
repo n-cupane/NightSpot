@@ -9,6 +9,7 @@ import com.nighter.nightspot.dto.spot.SpotWithCategoryDTO;
 import com.nighter.nightspot.dto.spot.SpotWithoutCategoryDTO;
 import com.nighter.nightspot.dto.spot.UpdateSpotDTO;
 import com.nighter.nightspot.error.exception.NoResultException;
+import com.nighter.nightspot.models.Spot;
 
 import java.util.List;
 
@@ -28,6 +29,8 @@ public interface SpotService {
     void deleteById(Long aLong) throws NoResultException;
 
     SpotWithoutCategoryDTO findByName(String name) throws NoResultException;
+
+    List<SpotWithoutCategoryDTO> findAllByCategoryId(Long id);
 
 
 }

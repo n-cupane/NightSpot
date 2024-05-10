@@ -83,4 +83,10 @@ public class SpotController {
         return ResponseEntity.ok(s);
     }
 
+    @GetMapping("/auth/spot/findByCategory/{id}")
+    public ResponseEntity<List<SpotWithoutCategoryDTO>> findByCategory(@PathVariable Long id) throws NoResultException {
+        List<SpotWithoutCategoryDTO> s = spotService.findAllByCategoryId(id);
+        return ResponseEntity.ok(s);
+    }
+
 }

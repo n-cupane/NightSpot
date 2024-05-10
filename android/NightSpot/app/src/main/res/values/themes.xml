@@ -1,15 +1,19 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.NightSpot" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
+        <item name="colorPrimary">#292429</item>
 
     </style>
+
+    //Calendar
 
     <style name="Theme.NightSpot" parent="Base.Theme.NightSpot" />
     <style name="CalenderViewCustom" parent="Theme.AppCompat">
         <item name="colorAccent">@color/white</item>
         <item name="colorPrimary">@color/white</item>
     </style>
+
+
 
     <style name="CalenderViewDateCustomText" parent="android:TextAppearance.DeviceDefault.Small">
         <item name="android:textColor">@color/white</item>
@@ -19,4 +23,35 @@
     <style name="CalenderViewWeekCustomText" parent="android:TextAppearance.DeviceDefault.Small">
         <item name="android:textColor">@color/white</item>
     </style>
+
+    //cardview
+
+    <style name="CustomCardViewStyle" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay_card_custom_corners</item>
+    </style>
+
+
+    <style name="ShapeAppearanceOverlay_card_custom_corners" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">25dp</item>
+        <item name="cornerSizeTopLeft">25dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay_card_custom_border" parent="">
+        <item name="cornerFamily">rounded</item> <!-- Utilizza i bordi arrotondati -->
+        <item name="cornerSize">15dp</item> <!-- Imposta la dimensione dei bordi arrotondati -->
+        <item name="strokeColor">#ABFFFFFF</item> <!-- Imposta il colore dei bordi -->
+        <item name="strokeWidth">1dp</item> <!-- Imposta la larghezza dei bordi -->
+    </style>
+
+    <style name="ShapeAppearanceOverlay_card_custom_border_internal" parent="">
+        <item name="cornerFamily">rounded</item> <!-- Utilizza i bordi arrotondati -->
+        <item name="cornerSize">15dp</item> <!-- Imposta la dimensione dei bordi arrotondati -->
+        <item name="strokeColor">#D509EC</item> <!-- Imposta il colore dei bordi -->
+        <item name="strokeWidth">1dp</item> <!-- Imposta la larghezza dei bordi -->
+    </style>
+
+
 </resources>

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.RegistrationFragment"
-    android:background="@color/Nightviolet">
+    android:background="@drawable/background_blurred">
 
     <TextView
         android:id="@+id/signin"
@@ -15,9 +15,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/form"
-        android:text="Sing In:"
+        android:text="Sign Up:"
         android:textColor="@color/white"
-        android:textSize="35sp"
+        android:textSize="20sp"
         android:textAlignment="center"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -44,29 +44,28 @@
             android:id="@+id/Gallery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/round_black_button"
+            app:backgroundTint="@null"
+            android:textColor="@color/white"
             android:text="Select a photo from gallery"
-            app:layout_constraintBottom_toTopOf="@id/Back"
+            app:layout_constraintBottom_toTopOf="@id/Finish"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/profileImage"/>
 
 
-        <Button
-            android:id="@+id/Back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Back"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/Finish"/>
+
 
         <Button
             android:id="@+id/Finish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Finish"
+            android:background="@drawable/round_black_button"
+            app:backgroundTint="@null"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/Back"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
 

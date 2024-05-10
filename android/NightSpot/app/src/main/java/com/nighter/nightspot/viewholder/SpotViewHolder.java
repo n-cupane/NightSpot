@@ -25,11 +25,17 @@ public class SpotViewHolder extends RecyclerView.ViewHolder {
     private ImageView spotImage;
     private ImageView card_immagine;
 
+    private TextView spotAddress;
+
+    private ImageView spot_genre;
+
 
     public SpotViewHolder(@NonNull View itemView) {
         super(itemView);
         spotName = itemView.findViewById(R.id.spotName);
         spotImage = itemView.findViewById(R.id.spot_immagine);
+        spotAddress = itemView.findViewById(R.id.address);
+        spot_genre = itemView.findViewById(R.id.spot_genre_icon);
 
 
     }
@@ -37,6 +43,17 @@ public class SpotViewHolder extends RecyclerView.ViewHolder {
     public void setSpot(Spot spot) {
         this.spot = spot;
         spotName.setText(spot.getName());
+        spotAddress.setText(spot.getPosition());
+        spot_genre.setImageResource(R.drawable.disco);
+        /*if(spot.getCategory().getName().equalsIgnoreCase("azienda")){
+            spot_genre.setImageResource(R.drawable.disco);
+        } else if (spot.getCategory().getName().equalsIgnoreCase("bar")) {
+            spot_genre.setImageResource(R.drawable.bar);
+        } else if (spot.getCategory().getName().equalsIgnoreCase("pub")) {
+            spot_genre.setImageResource(R.drawable.pub);
+        }*/
+
+
         String spotImgString = spot.getPhotos().get(0).getPath();
         Picasso.get()
                 .load("http://192.168.1.62:8080/"+spotImgString)

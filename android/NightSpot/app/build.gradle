@@ -35,6 +35,9 @@ android {
 }
 
 dependencies {
+
+
+    implementation "com.airbnb.android:lottie:3.4.0"
     implementation "androidx.navigation:navigation-fragment:2.7.7"
     implementation "androidx.navigation:navigation-ui:2.7.7"
     implementation 'com.fasterxml.jackson.core:jackson-core:2.16.1'

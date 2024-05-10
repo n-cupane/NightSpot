@@ -73,7 +73,7 @@ public class CategoryController {
         return ResponseEntity.ok(c);
     }
 
-    @GetMapping("/admin/category/findAllWithoutSpots")
+    @GetMapping("/auth/category/findAllWithoutSpots")
     public ResponseEntity<List<CategoryWithoutSpotsDTO>> findAllWithoutSpots() throws NoResultException {
         List<CategoryWithoutSpotsDTO> c = categoryService.findAllWithoutSpots();
         return ResponseEntity.ok(c);

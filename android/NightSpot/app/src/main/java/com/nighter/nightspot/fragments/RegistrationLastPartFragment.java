@@ -2,8 +2,10 @@ package com.nighter.nightspot.fragments;
 
 import android.Manifest;
 import android.app.DatePickerDialog;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
@@ -21,10 +23,12 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
+import android.provider.OpenableColumns;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
@@ -33,6 +37,7 @@ import com.nighter.nightspot.R;
 import com.nighter.nightspot.databinding.FragmentRegistrationBinding;
 import com.nighter.nightspot.databinding.FragmentRegistrationLastPartBinding;
 import com.nighter.nightspot.databinding.FragmentSpotBinding;
+import com.nighter.nightspot.models.UploadImageRequest;
 import com.nighter.nightspot.models.User;
 import com.nighter.nightspot.retrofit.RetrofitService;
 import com.nighter.nightspot.retrofit.SpotApi;
@@ -48,6 +53,7 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Base64;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -69,6 +75,7 @@ public class RegistrationLastPartFragment extends Fragment {
     private RegistrationLastPartFragmentArgs args;
 
     private User u;
+
 
 
 
@@ -96,6 +103,8 @@ public class RegistrationLastPartFragment extends Fragment {
 
     private byte[] bytes;
 
+    private UploadImageRequest uploadImageRequest = new UploadImageRequest();
+
 
     private ActivityResultLauncher<PickVisualMediaRequest> pickMedia =
             registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri -> {
@@ -103,18 +112,38 @@ public class RegistrationLastPartFragment extends Fragment {
                 // photo picker.
                 if (uri != null) {
                     Log.d("PhotoPicker", "Selected URI: " + uri);
-                    f = new File(uri.getPath());
 
-                    try {
-                        InputStream is= getContext().getContentResolver().openInputStream(uri);
+                    ContentResolver contentResolver = getContext().getContentResolver();
+
+
+
+                    try (Cursor cursor = contentResolver.query(uri, null, null, null, null)) {
+                        if (cursor != null && cursor.moveToFirst()) {
+                            int displayNameColumnIndex = cursor.getColumnIndexOrThrow(OpenableColumns.DISPLAY_NAME);
+                            int mimeTypeColumnIndex = cursor.getColumnIndexOrThrow(OpenableColumns.DISPLAY_NAME);
+
+                            String fileName = cursor.getString(displayNameColumnIndex);
+                            String mimeType = cursor.getString(mimeTypeColumnIndex);
+                            uploadImageRequest.setFileName(fileName);
+                            uploadImageRequest.setMimeTipe(mimeType);
+
+
+                        }
+                    }
+
+                    try (InputStream is= contentResolver.openInputStream(uri)){
+
 
                         bytes = readBytes(is);
-                        System.out.println(bytes);
+                        String s = Base64.getEncoder().encodeToString(bytes);
+                        uploadImageRequest.setImageData(s);
 
                         Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
 
                         // Set the Bitmap to your ImageView
                         binding.profileImage.setImageBitmap(bitmap);
+
+
 
                     } catch (FileNotFoundException e) {
                         throw new RuntimeException(e);
@@ -222,12 +251,8 @@ public class RegistrationLastPartFragment extends Fragment {
 
                     if(response.code()==200) {
 
-                        RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), f);
-                        MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("image", f.getName(), requestBody);
 
-
-
-                        userApi.uploadPhoto(fileToUpload ,u.getUsername()).enqueue(new retrofit2.Callback<Void>(){
+                        userApi.uploadPhoto(uploadImageRequest ,u.getUsername()).enqueue(new retrofit2.Callback<Void>(){
 
                             @Override
                             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -239,7 +264,8 @@ public class RegistrationLastPartFragment extends Fragment {
 
                             @Override
                             public void onFailure(Call<Void> call, Throwable t) {
-
+                                Toast.makeText(getContext(), "save failed", Toast.LENGTH_SHORT).show();
+                                Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, "Error occured", t);
                             }
                         });
                     }

@@ -6,12 +6,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.TicketFragment">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_blurred"/>
+
     <!-- TODO: Update blank fragment layout -->
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/ticketCard"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="90dp"
+        android:backgroundTint="@color/cardBackground"
+        app:cardPreventCornerOverlap="false"
         app:layout_constraintWidth_percent="1"
         app:layout_constraintHeight_percent="0.70"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,6 +32,7 @@
 
             <TextView
                 android:id="@+id/welcomeText"
+                android:textColor="@color/white"
                 android:layout_width="0dp"
                 app:layout_constraintWidth_percent="0.9"
                 app:layout_constraintStart_toStartOf="parent"
@@ -48,9 +56,12 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
     <Button
+        android:textColor="@color/white"
+        app:backgroundTint="@null"
+        android:background="@drawable/round_black_button"
         android:id="@+id/back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -62,6 +73,9 @@
 
     <Button
         android:id="@+id/send"
+        android:textColor="@color/white"
+        app:backgroundTint="@null"
+        android:background="@drawable/round_black_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Send"

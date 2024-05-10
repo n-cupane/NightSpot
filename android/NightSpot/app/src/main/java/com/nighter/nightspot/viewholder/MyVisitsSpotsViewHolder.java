@@ -25,17 +25,27 @@ public class MyVisitsSpotsViewHolder extends RecyclerView.ViewHolder {
 
     private ImageView spotImage;
 
+    private ImageView spot_genre;
+
+    private TextView spotAddress;
+
+
+
+
     public MyVisitsSpotsViewHolder(@NonNull View itemView) {
         super(itemView);
         spotName = itemView.findViewById(R.id.spotName);
         spotImage = itemView.findViewById(R.id.spot_immagine);
-
+        spot_genre = itemView.findViewById(R.id.spot_genre_icon);
+        spotAddress = itemView.findViewById(R.id.address);
 
     }
 
     public void setSpot(Visit visit) {
         this.visit = visit;
         spotName.setText(visit.getSpot().getName());
+        spot_genre.setImageResource(R.drawable.glasses);
+        spotAddress.setText(visit.getVisitDate().toString());
         String spotImgString = visit.getSpot().getPhotos().get(0).getPath();
         Picasso.get()
                 .load("http://192.168.1.62:8080/"+spotImgString)
