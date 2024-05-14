@@ -1,6 +1,7 @@
 package com.nighter.nightspot.repository;
 
 import com.nighter.nightspot.dto.visit.VisitDTO;
+import com.nighter.nightspot.models.Spot;
 import com.nighter.nightspot.models.User;
 import com.nighter.nightspot.models.Visit;
 import jakarta.transaction.Transactional;
@@ -26,5 +27,7 @@ public interface VisitRepositoryJPA extends JpaRepository<Visit, Long> {
     @Query("SELECT v FROM Visit v JOIN v.user u WHERE v.spot.id = :sId AND v.visitTime = :visitTime")
     List<Visit> selectVisitFromTime(Long sId, LocalTime visitTime);
 
+    @Query("select v from Visit v where v.spot.id = :spotId")
+    List<Visit> findBySpot(Long spotId);
 
 }

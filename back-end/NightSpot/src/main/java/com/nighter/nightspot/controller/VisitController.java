@@ -73,5 +73,10 @@ public class VisitController {
         return ResponseEntity.ok(visitDTOS);
     }
 
+    @GetMapping("/admin/visit/findAllBySpot/{spotId}")
+    public ResponseEntity<List<VisitDTO>> findAllBySpot(@PathVariable Long spotId) {
+        List<VisitDTO> visitsOfSpot = visitService.findAllBySpot(spotId);
+        return ResponseEntity.ok(visitsOfSpot);
+    }
 
 }

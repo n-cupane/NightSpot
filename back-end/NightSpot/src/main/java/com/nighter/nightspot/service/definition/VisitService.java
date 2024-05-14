@@ -29,4 +29,6 @@ public interface VisitService {
 
     List<VisitDTO> selectVisitFromTime(Long sId, LocalTime visitTIme);
 
+    List<VisitDTO> findAllBySpot(Long spotId);
+
 }

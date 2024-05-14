@@ -86,5 +86,12 @@ public class VisitServiceJPA implements VisitService {
         return repo.selectVisitFromTime(sId, visitTIme).stream().map(t->mapper.toVisitDTO(t)).toList();
     }
 
+    @Override
+    public List<VisitDTO> findAllBySpot(Long spotId) {
+        return repo.findBySpot(spotId).stream()
+                .map(mapper::toVisitDTO)
+                .toList();
+    }
+
 
 }
