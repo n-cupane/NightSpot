@@ -177,7 +177,7 @@ public class UserServiceJPA implements UserService {
         System.out.println("PRIMA: " + u.getSpots());
         u.setSpots(
                 spots.stream()
-                        .filter(s -> s.getId() == spot.getId())
+                        .filter(s -> s.getId() != spot.getId())
                         .toList()
         );
         System.out.println("DOPO" + u.getSpots());

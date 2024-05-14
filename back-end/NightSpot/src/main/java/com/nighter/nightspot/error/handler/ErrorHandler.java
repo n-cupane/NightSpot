@@ -95,5 +95,10 @@ public class ErrorHandler {
         return p;
 
     }
+    @ExceptionHandler(Exception.class)
+    public ProblemDetail handleException(Exception e) {
+        e.printStackTrace();
+        return ProblemDetail.forStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+    }
 
 }

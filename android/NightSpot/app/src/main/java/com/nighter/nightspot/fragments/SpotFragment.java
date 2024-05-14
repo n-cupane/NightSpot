@@ -121,6 +121,9 @@ public class SpotFragment extends Fragment {
                 }
 
                 if(!favorite) {
+                    binding.AddFavorites.setVisibility(View.VISIBLE);
+                    binding.removeFavorites.setVisibility(View.GONE);
+
                     binding.AddFavorites.setOnClickListener(v->{
                         spotApi.addSpotToFavourites(id,"Bearer "+token,"Bearer "+token).enqueue(new retrofit2.Callback<Void>(){
 
@@ -141,10 +144,12 @@ public class SpotFragment extends Fragment {
                     });
 
 
-                } else {
-                    binding.AddFavorites.setText("Rimuovi");
+                } else if(favorite) {
+                    binding.AddFavorites.setVisibility(View.GONE);
+                    binding.removeFavorites.setVisibility(View.VISIBLE);
 
-                    binding.AddFavorites.setOnClickListener(v->{
+
+                    binding.removeFavorites.setOnClickListener(v->{
                         userApi.removeFavorite(u.getId(),"Bearer "+token,s).enqueue(new retrofit2.Callback<Void>(){
 
                             @Override

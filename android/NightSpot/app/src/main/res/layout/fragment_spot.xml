@@ -117,6 +117,7 @@
 
             <Button
                 android:id="@+id/AddFavorites"
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
@@ -126,7 +127,24 @@
                 android:textColor="@color/white"
                 app:backgroundTint="@null"
                 app:layout_constraintEnd_toStartOf="@id/setVisit"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@id/ticket"
+                app:layout_constraintTop_toBottomOf="@id/info"
+                android:background="@drawable/round_black_button"/>
+
+            <Button
+                android:id="@+id/removeFavorites"
+                android:visibility="visible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:elevation="1dp"
+                android:textSize="15dp"
+                android:layout_marginRight="60dp"
+                android:text="remove "
+                android:textColor="@color/white"
+                app:backgroundTint="@null"
+                app:layout_constraintEnd_toStartOf="@id/setVisit"
+                app:layout_constraintStart_toStartOf="@id/ticket"
                 app:layout_constraintTop_toBottomOf="@id/info"
                 android:background="@drawable/round_black_button"/>
 
@@ -141,7 +159,8 @@
                 android:elevation="1dp"
                 app:backgroundTint="@null"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/AddFavorites"
+                android:layout_marginRight="35dp"
+                app:layout_constraintStart_toStartOf="@id/spotMenu"
                 app:layout_constraintTop_toBottomOf="@id/info"
                 android:background="@drawable/round_black_button" />
 

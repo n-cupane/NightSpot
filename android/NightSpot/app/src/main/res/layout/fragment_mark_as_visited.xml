@@ -29,7 +29,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/calendarVisit"
         app:layout_constraintBottom_toTopOf="@id/save"
-        android:background="@android:drawable/btn_dropdown"
+        android:popupBackground="@color/semiTransparentColor"
+        android:backgroundTint="@drawable/round_black_button"
         android:spinnerMode="dropdown"/>
 
     <Button
