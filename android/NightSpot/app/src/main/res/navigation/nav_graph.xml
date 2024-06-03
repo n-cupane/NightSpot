@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/login_fragment">
+
+    <fragment
+        android:id="@+id/login_fragment"
+        android:name="com.nighter.nightspot.fragments.LogInFragment"
+        android:label="@string/login"
+        tools:layout="@layout/fragment_log_in">
+
+        <action
+            android:id="@+id/login_to_home"
+            app:destination="@id/home_fragment"/>
+        <action
+            android:id="@+id/login_to_signin"
+            app:destination="@id/registration_fragment"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/home_fragment"
+        android:name="com.nighter.nightspot.fragments.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/home_to_user"
+            app:destination="@id/user_fragment"/>
+
+        <action
+            android:id="@+id/home_to_home"
+            app:destination="@id/home_fragment"/>
+
+        <action
+            android:id="@+id/home_to_spot"
+            app:destination="@id/spot_fragment"/>
+
+        <argument
+            android:name="id"
+            app:argType="long"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/user_fragment"
+        android:name="com.nighter.nightspot.fragments.UserFragment"
+        android:label="User"
+        tools:layout="@layout/fragment_user">
+        <action
+            android:id="@+id/user_to_modify"
+            app:destination="@id/modify_fragment"/>
+        <action
+            android:id="@+id/user_to_my_spots"
+            app:destination="@id/MySpotsFragment"/>
+        <action
+            android:id="@+id/user_to_my_visits"
+            app:destination="@id/MyVisitsFragment"/>
+        <argument
+            android:name="user"
+            app:argType="com.nighter.nightspot.models.User"/>
+
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/spot_fragment"
+        android:name="com.nighter.nightspot.fragments.SpotFragment"
+        android:label="Spot"
+        tools:layout="@layout/fragment_spot">
+
+        <action
+            android:id="@+id/spotToVisited"
+            app:destination="@id/markAsVisitedFragment"/>
+
+        <action
+            android:id="@+id/spotToMenu"
+            app:destination="@id/menuFragment"/>
+        <action
+            android:id="@+id/spotToTicket"
+            app:destination="@id/TicketFragment"/>
+
+        <argument
+            android:name="spot"
+            app:argType="com.nighter.nightspot.models.Spot"/>
+    </fragment>
+    <fragment
+        android:id="@+id/markAsVisitedFragment"
+        android:name="com.nighter.nightspot.fragments.MarkAsVisitedFragment"
+        android:label="markAsVisited"
+        tools:layout="@layout/fragment_mark_as_visited">
+
+        <argument
+            android:name="spot"
+            app:argType="com.nighter.nightspot.models.Spot"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/modify_fragment"
+        android:name="com.nighter.nightspot.fragments.ModifyFragment"
+        android:label="Modify"
+        tools:layout="@layout/fragment_modify">
+
+        <action
+            android:id="@+id/modify_to_user"
+            app:destination="@id/user_fragment"/>
+
+        <argument
+            android:name="user"
+            app:argType="com.nighter.nightspot.models.User"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/registration_fragment"
+        android:name="com.nighter.nightspot.fragments.RegistrationFragment"
+        android:label="Signup"
+        tools:layout="@layout/fragment_registration">
+
+        <action
+            android:id="@+id/signUpSecondPart"
+            app:destination="@id/Registration2Fragment"/>
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/MySpotsFragment"
+        android:name="com.nighter.nightspot.fragments.MySpotsFragment"
+        android:label="MySpots"
+        tools:layout="@layout/fragment_my_spots">
+        <action
+            android:id="@+id/myspots_to_spot"
+            app:destination="@id/spot_fragment"/>
+
+    </fragment>
+    <fragment
+        android:id="@+id/VisitUsersFragment"
+        android:name="com.nighter.nightspot.fragments.VisitUsersFragment"
+        android:label="MyVisitUsers"
+        tools:layout="@layout/fragment_visit_users">
+
+        <argument
+            android:name="visit"
+            app:argType="com.nighter.nightspot.models.Visit"/>
+
+
+    </fragment>
+
+    <fragment
+    android:id="@+id/MyVisitsFragment"
+    android:name="com.nighter.nightspot.fragments.MyVisitsFragment"
+    android:label="MyVisit"
+    tools:layout="@layout/fragment_my_visits">
+
+    <action
+        android:id="@+id/my_visits_to_users"
+        app:destination="@id/VisitUsersFragment"/>
+
+
+</fragment>
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.nighter.nightspot.fragments.MenuFragment"
+        android:label="SpotMenu"
+        tools:layout="@layout/fragment_menu">
+
+        <argument
+            android:name="spot"
+            app:argType="com.nighter.nightspot.models.Spot"/>
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/TicketFragment"
+        android:name="com.nighter.nightspot.fragments.TicketFragment"
+        android:label="Ticket"
+        tools:layout="@layout/fragment_ticket">
+
+        <argument
+            android:name="spot"
+            app:argType="com.nighter.nightspot.models.Spot"/>
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/Registration2Fragment"
+        android:name="com.nighter.nightspot.fragments.RegistrationPartTwoFragment"
+        android:label="Registration2"
+        tools:layout="@layout/fragment_registration_part_two">
+
+        <argument
+            android:name="user"
+            app:argType="com.nighter.nightspot.models.User"/>
+
+        <action
+            android:id="@+id/signUpThirdPart"
+            app:destination="@id/Registration3Fragment"/>
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/Registration3Fragment"
+        android:name="com.nighter.nightspot.fragments.RegistrationPartThreeFragment"
+        android:label="Registration3"
+        tools:layout="@layout/fragment_registration_part_three">
+
+        <argument
+            android:name="user"
+            app:argType="com.nighter.nightspot.models.User"/>
+
+        <action
+            android:id="@+id/signUpLastPart"
+            app:destination="@id/RegistrationFinalFragment"/>
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/RegistrationFinalFragment"
+        android:name="com.nighter.nightspot.fragments.RegistrationLastPartFragment"
+        android:label="RegistrationLast"
+        tools:layout="@layout/fragment_registration_last_part">
+
+        <argument
+            android:name="user"
+            app:argType="com.nighter.nightspot.models.User"/>
+
+        <action
+            android:id="@+id/signUpToLogin"
+            app:destination="@id/login_fragment"/>
+
+
+    </fragment>
+
+
+
+
+
+
+</navigation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NightSpot</string>
+    <string name="login">Accedi</string>
+    <string name="john_email">m.rossi@email.it</string>
+</resources>

@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: poppins;
+}
+
+.container-fluid {
+    height: 100vh;
+    padding: 0 !important;
+    color: white;
+}
+
+#left {
+    height: 100%;
+    width: 12%;
+    min-width: 200px;
+    background-color: #0e1726;
+}
+
+#right {
+    height: 100%;
+    width: 88%;
+    min-width: 900px;
+    min-height: 400px;
+    background-color: #060818;
+}
+
+#ns {
+    font-size: 2.5em;
+}
+
+.left-item {
+    width: 90%;
+    height: 5%;
+    min-height: 40px;
+    border-radius: 10px;
+}
+
+.left-item:hover {
+    background-color: #c18bff;
+}
+
+.current {
+    background-color: #c18bff;
+}
+
+.left-item-anchor {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    font-weight: 400;
+}
+
+.left-item-p {
+    display: inline-block;
+    font-size: 1.3rem;
+}
+
+.right-item {
+    margin-top: 3%;
+    width: 30%;
+    height: 30%;
+    min-height: 200px;
+    min-width: 300px;
+    background-color: #0e1726;
+    border-radius: 10px;
+}
+
+.right-item span {
+    font-size: 80px;
+    width: 120px;
+    height: 120px;
+    color: #1a8cff;
+    background-color: rgba(192, 138, 255, 30%);
+    border-radius: 100px;
+    text-align: center;
+    line-height: 120px;
+}
+
+.right-item-info {
+    margin-right: 5%;
+    margin-top: 3%;
+    height: 50%;
+    width: 50%;
+    text-align: end;
+}
+
+.right-item-info h1 {
+    font-weight: 400;
+}
+
+.right-item-info h3 {
+    font-weight: 400;
+}
+
+.right-item a {
+    text-decoration: none;
+    color: #a767e1;
+    border: 2px solid #a767e1;
+    border-radius: 10px;
+    text-align: center;
+    margin-left: 35%;
+    margin-bottom: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    height: 20%;
+}
+
+.right-item a:hover {
+
+    background-color: #c18bff;
+    border: none;
+    color: #060818;
+    
+}
+
+.right-item a p {
+    margin-top: 10%;
+    font-size: 20px;
+}
+
+#notification-bar {
+    width: 95%;
+    background-color: #0e1726;
+    margin-top: 2%;
+    border-radius: 10px;
+}
+
+.notification-item {
+    width: 100%;
+    height: 40px;
+    margin-top: 10px;
+    padding-left: 2%;
+    border-bottom: 2px solid #060818;
+}
+
+.notification-item:first-of-type {
+    padding-bottom: 50px;
+}
+
+.notification-item p {
+    margin: 0;
+}
+
+.notification-item h3 {
+    margin: 0;
+    font-weight: 400;
+    font-size: 30px;
+}
+
+.notification-item a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.notification-item a span {
+    color: red;
+}
